@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>TotalTech</title>
+
+    <link href="ViewEditor_files/css.css" rel="stylesheet" type="text/css">
+    <!-- Add local styles, mostly for plugins css file -->
+    <link href="ViewEditor_files/toastr.css" rel="stylesheet">
+
+
+    <link href="ViewEditor_files/bootstrap-datetimepicker.htm" rel="stylesheet">
+    <link href="ViewEditor_files/datatables.css" rel="stylesheet">
+
+    <link href="ViewEditor_files/daterangepicker-bs3.css" rel="stylesheet">
+
+    <link href="ViewEditor_files/datepicker3.css" rel="stylesheet">
+
+    <link href="ViewEditor_files/clockpicker.css" rel="stylesheet">
+
+    <link href="ViewEditor_files/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="ViewEditor_files/select2.css" rel="stylesheet">
+
+    <style>
+        .dataTables_filter {
+            display: none;
+        }
+
+        .select2-results {
+            background-color: #fff;
+        }
+
+        .select2-container .select2-dropdown {
+            height: auto !important;
+        }
+
+        div.dataTables_info {
+            display: inline-block;
+            float: right;
+        }
+
+        i {
+            font-size: 25px !important;
+            display: block;
+            color: #676a6c;
+            margin-left: 6px;
+            margin-right: 6px;
+        }
+
+        .fullWidth {
+            width: 100%;
+        }
+: ew-resize;
+}
+    </style>
+
+    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    <link href="ViewEditor_files/jquery-ui.css" rel="stylesheet" type="text/css">
+
+    <!-- Primary Inspinia style -->
+
+    <link href="ViewEditor_files/bootstrap.css" rel="stylesheet">
+<link href="ViewEditor_files/animate.css" rel="stylesheet">
+<link href="ViewEditor_files/style.css" rel="stylesheet">
+
+    
+    <link href="ViewEditor_files/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="ViewEditor_files/custom.css" rel="stylesheet">
+    <!--
+    <link href="ViewEditor_files/font-awesome.css" rel="stylesheet" type="text/css">
+    
+
+    
+     Section for main scripts render -->
+    <script src="ViewEditor_files/jquery-2.js"></script>
+    
+    <script src="ViewEditor_files/bootstrap.js"></script>
+
+    <script src="ViewEditor_files/jquery_004.js"></script>
+
+    <script src="ViewEditor_files/metisMenu.js"></script>
+<script src="ViewEditor_files/pace.js"></script>
+<script src="ViewEditor_files/inspinia.js"></script>
+
+    
+    <script src="ViewEditor_files/toastr.js"></script>
+
+
+    <!-- Skin config script - only for demo purpose-->
+    <script src="ViewEditor_files/skin.js"></script>
+
+
+    
+    <script src="ViewEditor_files/icheck.js"></script>
+
+
+    <link rel="stylesheet" href="libs/jquery-ui-1.12.1.custom/jquery-ui.css">
+    <script type="text/javascript" src="libs/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <style type="text/css">
+        .ui-draggable-helper { 
+            z-index: 5000
+        } 
+        #sortable{
+            /*list-style: none;*/
+        }
+
+    </style>
+<script type="text/javascript" src="interact.js"></script>
+    
+
+    
+
+</head>
+<body class="pace-done"><div class="pace  pace-inactive"><div class="pace-progress" style="transform: translate3d(100%, 0px, 0px);" data-progress-text="100%" data-progress="99">
+  <div class="pace-progress-inner"></div>
+</div>
+
+
+<div class="pace-activity"></div></div>
+
+    <!-- Skin configuration box -->
+    <!-- <div class="theme-config">
+    <div class="theme-config-box">
+        <div class="spin-icon">
+            <i class="fa fa-cogs fa-spin"></i>
+        </div>
+        <div class="skin-setttings">
+            <div class="title">Configuration</div>
+            <div class="setings-item">
+                <span>
+                    Collapse menu
+                </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="collapsemenu">
+                        <label class="onoffswitch-label" for="collapsemenu">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                <span>
+                    Fixed sidebar
+                </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="fixedsidebar" class="onoffswitch-checkbox" id="fixedsidebar">
+                        <label class="onoffswitch-label" for="fixedsidebar">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                <span>
+                    Top navbar
+                </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox" id="fixednavbar">
+                        <label class="onoffswitch-label" for="fixednavbar">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                <span>
+                    Top navbar v.2
+                    <br />
+                    <small>*Primary layout</small>
+                </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="fixednavbar2" class="onoffswitch-checkbox" id="fixednavbar2">
+                        <label class="onoffswitch-label" for="fixednavbar2">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                <span>
+                    Boxed layout
+                </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox" id="boxedlayout">
+                        <label class="onoffswitch-label" for="boxedlayout">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                <span>
+                    Fixed footer
+                </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="fixedfooter" class="onoffswitch-checkbox" id="fixedfooter">
+                        <label class="onoffswitch-label" for="fixedfooter">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">Skins</div>
+            <div class="setings-item default-skin">
+                <span class="skin-name ">
+                    <a href="#" class="s-skin-0">
+                        Default
+                    </a>
+                </span>
+            </div>
+            <div class="setings-item blue-skin">
+                <span class="skin-name ">
+                    <a href="#" class="s-skin-1">
+                        Blue light
+                    </a>
+                </span>
+            </div>
+            <div class="setings-item yellow-skin">
+                <span class="skin-name ">
+                    <a href="#" class="s-skin-3">
+                        Yellow/Purple
+                    </a>
+                </span>
+            </div>
+            <div class="setings-item ultra-skin">
+                <span class="skin-name ">
+                    <a target="_blank" href="md_skin/" class="md-skin">
+                        Material Design
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+ -->
+    <!-- Wrapper-->
+    <!-- PageClass give you ability to specify custom style for specific view based on action -->
+    <div id="wrapper" class="CreateTest">
+
+        <!-- Navigation -->
+        
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+          <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span>
+                            <img alt="image" class="img-circle" style="width: 48px" src="">
+                        </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">Administrador</strong>
+                                </span> <span class="text-muted text-xs block">Administrator <b class="caret"></b></span>
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="http://localhost:12681/Frontal/AppViews/Profile">Profile</a></li>
+                            <li><a href="http://localhost:12681/Frontal/AppViews/Contacts">Contacts</a></li>
+                            <li><a href="http://localhost:12681/Frontal/Mailbox/Inbox">Mailbox</a></li>
+                            <li class="divider"></li>
+                            
+
+
+                            
+
+
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        IN+
+                    </div>
+                </li>
+<li>
+
+    <a href="#"><i class="fa fa-edit"></i><span class="nav-label">Catálogos</span><span class="fa arrow"></span></a>
+
+   
+
+        <ul class="nav nav-second-level collapse">
+
+                    <li>
+                        
+                        
+                        <a href="http://localhost:12681/Frontal/Categorias_Plugins">Categorías Plugins</a>
+
+                        </li>
+                    <li>
+                        
+                        
+                        <a href="http://localhost:12681/Frontal/Historial_Solicitudes">Historial Solicitudes</a>
+
+                        </li>
+                    <li>
+                        
+                        
+                        <a href="http://localhost:12681/Frontal/Proyectos">Proyectos</a>
+
+                        </li>
+                    <li>
+                        
+                        
+                        <a href="http://localhost:12681/Frontal/Registro_de_Plugins">Registro de Plugins</a>
+
+                        </li>
+                    <li>
+                        
+                        
+                        <a href="http://localhost:12681/Frontal/Solicitudes">Solicitudes</a>
+
+                        </li>
+                    <li>
+                        
+                        
+                        <a href="http://localhost:12681/Frontal/Status_Solicitudes">Status Solicitudes</a>
+
+                        </li>
+            </ul>
+
+    </li><li>
+
+    <a href="#"><i class="fa fa-edit"></i><span class="nav-label">Seguridad</span><span class="fa arrow"></span></a>
+
+   
+
+        <ul class="nav nav-second-level collapse">
+
+                    <li>
+                        
+                        
+                        <a href="http://localhost:12681/Frontal/SecurityAdministration">Permisos</a>
+
+                        </li>
+            </ul>
+
+    </li>
+            
+           
+        </ul>
+    </div>
+</nav>
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg" style="min-height: 531px;">
+
+            <!-- Top Navbar -->
+            <div class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" method="post" action="">
+                <div class="form-group">
+                    
+                    
+                </div>
+            </form>
+        </div>
+        <ul class="nav navbar-top-links navbar-right">
+            <li>
+                <span class="m-r-sm text-muted welcome-message" data-i18n="topnav.welcometext"></span>
+                <img src="ViewEditor_files/Logo.png" alt="" height="49" width="210">
+            </li>
+            
+            <li>
+                
+                
+                
+<form action="/Account/LogOff" id="logoutForm" method="post"><input name="__RequestVerificationToken" value="ClMtX3j5bokGxo5bQ3Uw3rG4Al_gnzQZCSCJGUepfz7bwzUqnop5gnLuRvb1c3bX6MoOSBMGNgOWGRWRD2mVC45Jn3a5Ny29z4TGd6DkXYPIyjddVhugukKMNhcnSJ570" type="hidden">                    <a href="javascript:%20document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
+</form>            </li>
+            <li>
+                <a class="right-sidebar-toggle">
+                    <i class="fa fa-tasks"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+            <!-- Main view  -->
+            
+
+
+<script src="ViewEditor_files/datatables.js"></script>
+
+<script src="ViewEditor_files/moment.js"></script>
+<script src="ViewEditor_files/bootstrap-datetimepicker.js"></script>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="row">
+        <div class="col-lg-10">
+            <h2>
+                Solicitudes
+                <button onclick="GetBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" data-toggle="modal" data-target="#BusinessRule-form" style="display: none;" disabled="disabled">
+                    <i class="fa fa-cogs fa-spin"></i>
+                </button>
+            </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="http://localhost:12681/Frontal/Home">Home</a>
+                </li>
+                <li class="">
+                    <label>Solicitudes</label>
+                </li>
+                <li class="active">
+                    <strong>Nuevo</strong>
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-2">
+                    <h2>&nbsp;</h2>
+                    <button onclick="DisplayBusinessRule()" type="button" class="btn btn-info btn-lg displayBusinessProperyButton">
+                        <i class="fa fa-cogs fa-spin"></i>
+                    </button>
+                    
+                    
+                    
+                    
+
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content" id="main">
+<form action="/Frontal/Solicitudes/Post" class="form-horizontal" enctype="multipart/form-data" id="CreateSolicitudes" method="post" readonly="true" novalidate="novalidate">                    <script src="ViewEditor_files/bootstrap-datetimepicker.js"></script>
+                    <span id="popupNotification"></span>
+                    <div class="container-fluid SolicitudesCreateForm" id="viewmodeledit">
+                        <div class="tabs-container">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tabDatos_Generales"> Datos Generales</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tabDatos_Generales" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Folio</label>
+                                                    <div class="controls">
+                                                        <label class="form-control" for="Folio" id="lblFolio">0</label>
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">HTML Formulario</label>
+                                                    <div class="controls">
+                                                        <input class="form-control inputClientRequired" id="HTML_Formulario" name="HTML_Formulario" type="text">
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">HTML Vista</label>
+                                                    <div class="controls">
+                                                        <input class="form-control inputClientRequired" id="HTML_Vista" name="HTML_Vista" type="text">
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Controller</label>
+                                                    <div class="controls">
+                                                        <input class="form-control inputClientRequired" id="Controller" name="Controller" type="text">
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">View</label>
+                                                    <div class="controls">
+                                                        <input class="form-control inputClientRequired" id="View" name="View" type="text">
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Fecha Recepción</label>
+                                                    <div class="controls">
+                                                        <div class="input-group date" id="datetimepicker1">
+                                                            <input class="form-control col-md-12 inputClientRequired" id="Fecha_Recepcion" readonly="readonly" name="Fecha_Recepcion" type="text">
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Status</label>
+                                                    <div class="controls">
+                                                        <select class="form-control inputClientRequired" data-val="true" data-val-number="The field Status must be a number." data-val-required="The Status field is required." id="Status" name="Status">
+                                                            <option value="" selected="selected"></option>
+                                                        </select>
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Fecha Inicio Edición</label>
+                                                    <div class="controls">
+                                                        <div class="input-group date" id="datetimepicker1">
+                                                            <input class="form-control col-md-12 inputClientRequired" id="Fecha_Inicio_Edicion" readonly="readonly" name="Fecha_Inicio_Edicion" type="text">
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Fecha Fin Edición</label>
+                                                    <div class="controls">
+                                                        <div class="input-group date" id="datetimepicker1">
+                                                            <input class="form-control col-md-12 inputClientRequired" id="Fecha_Fin_Edicion" readonly="readonly" name="Fecha_Fin_Edicion" type="text">
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Token</label>
+                                                    <div class="controls">
+                                                        <input class="form-control inputClientRequired" id="Token" name="Token" type="text">
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Observaciones</label>
+                                                    <div class="controls">
+                                                        <input class="form-control inputClientRequired" id="Observaciones" name="Observaciones" type="text">
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Usuario Editor</label>
+                                                    <div class="controls">
+                                                        <select class="form-control inputClientRequired" data-val="true" data-val-number="The field Usuario Editor must be a number." data-val-required="The Usuario Editor field is required." id="Usuario_Editor" name="Usuario_Editor">
+                                                            <option value="" selected="selected"></option>
+                                                                        <option value="1">Administrador</option>
+                                                        </select>
+                                                        
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Fecha Envío Cliente</label>
+                                                    <div class="controls">
+                                                        <div class="input-group date" id="datetimepicker1">
+                                                            <input class="form-control col-md-12 inputClientRequired" id="Fecha_Envio_Cliente" readonly="readonly" name="Fecha_Envio_Cliente" type="text">
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            <div class="col-md-12">
+                                                <div class="control-group" data-drop="true">
+                                                    <label class="control-label">Envío Ok</label>
+                                                    <div class="controls">
+                                                        <input class="i-checks" data-val="true" data-val-required="El campo Envio_Ok es obligatorio." id="Envio_Ok" name="Envio_Ok" value="true" checked="checked" type="checkbox"><input name="Envio_Ok" value="false" type="hidden">
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-actions fluid">
+                            <input value="0" id="ReferenceFolio" type="hidden">
+                            <input value="0" name="Folio" id="FolioId" type="hidden">
+                                <input value="Guardar" id="Guardar" class="btn btn-w-m btn-primary" onclick="return checkClientValidate('SolicitudesCreateForm');" type="button">
+                                <button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" style="display: none;" disabled="disabled">
+                                    <i class="fa fa-cogs fa-spin"></i>
+                                </button>
+                                    <input value="Guardar y Nuevo" id="GuardarYNuevo" onclick="return checkClientValidate('SolicitudesCreateForm');" data-bind=" click saveAndNew" class="btn btn-w-m btn-success" type="button">
+                                    <input value="Guardar y Copia" id="GuardarYCopia" onclick="return checkClientValidate('SolicitudesCreateForm');" data-bind=" click saveAndNew" class="btn btn-w-m btn-success" type="button">
+                                    <a title="Configure" id="ConfigureSave" name="ConfigureSave" onclick="SaveElementAttributes()" class="btn btn-success">Configure</a>
+                            <input id="hdnConfigureType" type="hidden">
+                            <input value="Cancelar" id="Cancelar" name="Cancelar" class="btn btn-danger noConsult" data-bind="click: cancel" tabindex="16" type="button">
+                            <button type="button" class="btn btn-info btn-lg displayBusinessProperyButton displayRuleButton" style="display: none;" disabled="disabled">
+                                <i class="fa fa-cogs fa-spin"></i>
+                            </button>
+                        </div>
+                    </div>
+</form>            </div>
+        </div>
+    </div>
+</div>
+<input id="hdnApplicationDirectory" value="/" type="hidden">
+
+
+            <!-- Footer -->
+            <div class="footer">
+    <div class="pull-right">
+        
+    </div>
+    <div>
+        
+    </div>
+</div>
+
+
+        </div>
+        <!-- End page wrapper-->
+        <!-- Right Sidebar -->
+        <div id="right-sidebar" class="">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="sidebar-container" style="overflow: hidden; width: auto; height: 100%;">
+
+        <ul class="nav nav-tabs navs-3">
+
+            <li class="active">
+                <a data-toggle="tab" href="#tab-1">
+                    Notes
+                </a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#tab-2">
+                    Projects
+                </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#tab-3">
+                    <i class="fa fa-gear"></i>
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+
+
+            <div id="tab-1" class="tab-pane active">
+
+                <div class="sidebar-title">
+                    <h3> <i class="fa fa-comments-o"></i> Latest Notes</h3>
+                    <small><i class="fa fa-tim"></i> You have 10 new message.</small>
+                </div>
+
+                <div>
+
+                    <div class="sidebar-message">
+                        <a href="#">
+                            <div class="pull-left text-center">
+                                <img alt="image" class="img-circle message-avatar" src="ViewEditor_files/a1.jpg">
+
+                                <div class="m-t-xs">
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="media-body">
+
+                                There are many variations of passages of Lorem Ipsum available.
+                                <br>
+                                <small class="text-muted">Today 4:21 pm</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="sidebar-message">
+                        <a href="#">
+                            <div class="pull-left text-center">
+                                <img alt="image" class="img-circle message-avatar" src="ViewEditor_files/a2.jpg">
+                            </div>
+                            <div class="media-body">
+                                The point of using Lorem Ipsum is that it has a more-or-less normal.
+                                <br>
+                                <small class="text-muted">Yesterday 2:45 pm</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="sidebar-message">
+                        <a href="#">
+                            <div class="pull-left text-center">
+                                <img alt="image" class="img-circle message-avatar" src="ViewEditor_files/a3.jpg">
+
+                                <div class="m-t-xs">
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                Mevolved over the years, sometimes by 
+accident, sometimes on purpose (injected humour and the like).
+                                <br>
+                                <small class="text-muted">Yesterday 1:10 pm</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="sidebar-message">
+                        <a href="#">
+                            <div class="pull-left text-center">
+                                <img alt="image" class="img-circle message-avatar" src="ViewEditor_files/a4.jpg">
+                            </div>
+
+                            <div class="media-body">
+                                Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+                                <br>
+                                <small class="text-muted">Monday 8:37 pm</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="sidebar-message">
+                        <a href="#">
+                            <div class="pull-left text-center">
+                                <img alt="image" class="img-circle message-avatar" src="ViewEditor_files/a8.jpg">
+                            </div>
+                            <div class="media-body">
+
+                                All the Lorem Ipsum generators on the Internet tend to repeat.
+                                <br>
+                                <small class="text-muted">Today 4:21 pm</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="sidebar-message">
+                        <a href="#">
+                            <div class="pull-left text-center">
+                                <img alt="image" class="img-circle message-avatar" src="ViewEditor_files/a7.jpg">
+                            </div>
+                            <div class="media-body">
+                                Renaissance. The first line of Lorem 
+Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 
+1.10.32.
+                                <br>
+                                <small class="text-muted">Yesterday 2:45 pm</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="sidebar-message">
+                        <a href="#">
+                            <div class="pull-left text-center">
+                                <img alt="image" class="img-circle message-avatar" src="ViewEditor_files/a3.jpg">
+
+                                <div class="m-t-xs">
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                The standard chunk of Lorem Ipsum used since the 1500s is reproduced below.
+                                <br>
+                                <small class="text-muted">Yesterday 1:10 pm</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="sidebar-message">
+                        <a href="#">
+                            <div class="pull-left text-center">
+                                <img alt="image" class="img-circle message-avatar" src="ViewEditor_files/a4.jpg">
+                            </div>
+                            <div class="media-body">
+                                Uncover many web sites still in their infancy. Various versions have.
+                                <br>
+                                <small class="text-muted">Monday 8:37 pm</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="tab-2" class="tab-pane">
+
+                <div class="sidebar-title">
+                    <h3> <i class="fa fa-cube"></i> Latest projects</h3>
+                    <small><i class="fa fa-tim"></i> You have 14 projects. 10 not completed.</small>
+                </div>
+
+                <ul class="sidebar-list">
+                    <li>
+                        <a href="#">
+                            <div class="small pull-right m-t-xs">9 hours ago</div>
+                            <h4>Business valuation</h4>
+                            It is a long established fact that a reader will be distracted.
+
+                            <div class="small">Completion with: 22%</div>
+                            <div class="progress progress-mini">
+                                <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                            </div>
+                            <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="small pull-right m-t-xs">9 hours ago</div>
+                            <h4>Contract with Company </h4>
+                            Many desktop publishing packages and web page editors.
+
+                            <div class="small">Completion with: 48%</div>
+                            <div class="progress progress-mini">
+                                <div style="width: 48%;" class="progress-bar"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="small pull-right m-t-xs">9 hours ago</div>
+                            <h4>Meeting</h4>
+                            By the readable content of a page when looking at its layout.
+
+                            <div class="small">Completion with: 14%</div>
+                            <div class="progress progress-mini">
+                                <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="label label-primary pull-right">NEW</span>
+                            <h4>The generated</h4>
+                            <!--<div class="small pull-right m-t-xs">9 hours ago</div>-->
+                            There are many variations of passages of Lorem Ipsum available.
+                            <div class="small">Completion with: 22%</div>
+                            <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="small pull-right m-t-xs">9 hours ago</div>
+                            <h4>Business valuation</h4>
+                            It is a long established fact that a reader will be distracted.
+
+                            <div class="small">Completion with: 22%</div>
+                            <div class="progress progress-mini">
+                                <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                            </div>
+                            <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="small pull-right m-t-xs">9 hours ago</div>
+                            <h4>Contract with Company </h4>
+                            Many desktop publishing packages and web page editors.
+
+                            <div class="small">Completion with: 48%</div>
+                            <div class="progress progress-mini">
+                                <div style="width: 48%;" class="progress-bar"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="small pull-right m-t-xs">9 hours ago</div>
+                            <h4>Meeting</h4>
+                            By the readable content of a page when looking at its layout.
+
+                            <div class="small">Completion with: 14%</div>
+                            <div class="progress progress-mini">
+                                <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="label label-primary pull-right">NEW</span>
+                            <h4>The generated</h4>
+                            <!--<div class="small pull-right m-t-xs">9 hours ago</div>-->
+                            There are many variations of passages of Lorem Ipsum available.
+                            <div class="small">Completion with: 22%</div>
+                            <div class="small text-muted m-t-xs">Project end: 4:00 pm - 12.06.2014</div>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div id="tab-3" class="tab-pane">
+
+                <div class="sidebar-title">
+                    <h3><i class="fa fa-gears"></i> Settings</h3>
+                    <small><i class="fa fa-tim"></i> You have 14 projects. 10 not completed.</small>
+                </div>
+
+                <div class="setings-item">
+                    <span>
+                        Show notifications
+                    </span>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            <input name="collapsemenu" class="onoffswitch-checkbox" id="example" type="checkbox">
+                            <label class="onoffswitch-label" for="example">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setings-item">
+                    <span>
+                        Disable Chat
+                    </span>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            <input name="collapsemenu" checked="checked" class="onoffswitch-checkbox" id="example2" type="checkbox">
+                            <label class="onoffswitch-label" for="example2">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setings-item">
+                    <span>
+                        Enable history
+                    </span>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            <input name="collapsemenu" class="onoffswitch-checkbox" id="example3" type="checkbox">
+                            <label class="onoffswitch-label" for="example3">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setings-item">
+                    <span>
+                        Show charts
+                    </span>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            <input name="collapsemenu" class="onoffswitch-checkbox" id="example4" type="checkbox">
+                            <label class="onoffswitch-label" for="example4">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setings-item">
+                    <span>
+                        Offline users
+                    </span>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            <input checked="checked" name="collapsemenu" class="onoffswitch-checkbox" id="example5" type="checkbox">
+                            <label class="onoffswitch-label" for="example5">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setings-item">
+                    <span>
+                        Global search
+                    </span>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            <input checked="checked" name="collapsemenu" class="onoffswitch-checkbox" id="example6" type="checkbox">
+                            <label class="onoffswitch-label" for="example6">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="setings-item">
+                    <span>
+                        Update everyday
+                    </span>
+                    <div class="switch">
+                        <div class="onoffswitch">
+                            <input name="collapsemenu" class="onoffswitch-checkbox" id="example7" type="checkbox">
+                            <label class="onoffswitch-label" for="example7">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-content">
+                    <h4>Settings</h4>
+                    <div class="small">
+                        I belive that. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        And typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                        Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div><div class="slimScrollBar" style="background: rgb(0, 0, 0) none repeat scroll 0% 0%; width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 200.454px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.4; z-index: 90; right: 1px;"></div></div>
+
+
+
+</div>
+
+
+
+    </div>
+    
+ 
+    
+    
+    <!-- End wrapper-->
+    <!-- Handler for local scripts -->
+    
+
+    <script src="ViewEditor_files/icheck.js"></script>
+
+    <script src="ViewEditor_files/bootstrap-datepicker.js"></script>
+
+    <script src="ViewEditor_files/clockpicker.js"></script>
+
+    <script src="ViewEditor_files/select2.js"></script>
+
+    
+    <script type="text/javascript">
+
+
+
+
+        $(document).ready(function () {
+
+            $('#Fecha_Recepcion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "dd-mm-yyyy"
+            });
+            $('#Fecha_Inicio_Edicion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "dd-mm-yyyy"
+            });
+            $('#Fecha_Fin_Edicion').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "dd-mm-yyyy"
+            });
+            $('#Fecha_Envio_Cliente').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "dd-mm-yyyy"
+            });
+
+
+            initiateUIControls();
+        });
+
+
+
+        function initiateUIControls() {
+            $('.gridDatePicker').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true,
+                format: "dd-mm-yyyy"
+            });
+            //Time Picker
+            $('.gridTimePicker').clockpicker();
+
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        function SendSolicitudesData(callBack) {
+            var formData = new FormData($("form#CreateSolicitudes")[0]);
+            if (checkClientValidate('SolicitudesCreateForm')) {
+                $.ajax({
+                    url: '/Frontal/Solicitudes/Post/',
+                    type: 'POST',
+                    data: formData,
+                    async: true,
+                    success: function (result) {
+                        if (result < 0) {
+                            showNotification("Error al guardar la informaci&#243;n", "error");
+                        } else {
+
+                            showNotification("Informaci&#243;n Guardada Correctamete", "success");
+                            callBack(result);
+                        }
+                    },
+                    error: function (result) {
+                        showNotification("servidor de ponerse en contacto con el error", "error");
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            return false;
+        };
+        function GetPropertyBag() {
+            $.get('/Frontal/Solicitudes/SolicitudesPropertyBag', function (data) {
+                $(".PropertyModal").html(data);
+            });
+        }
+        function GetBusinessRule() {
+            $.get('/Frontal/Solicitudes/SolicitudesBusinessRule', function (data) {
+                $(".BusinessRuleModal").html(data);
+            });
+        }
+        function GetAddBusinessRule(RuleId) {
+            $.get('/Frontal/Solicitudes/AddBusinessRule', { BusinessRuleId: RuleId }, function (data) {
+                $(".AddBusinessRuleModal").html(data);
+                $(".datatable").DataTable();
+            });
+        }
+
+        var permission = {
+            Consult: 'True' == 'True',
+            New: 'True' == 'True',
+            Edit: 'True' == 'True',
+            Delete: 'True' == 'True',
+            Export: 'True' == 'True',
+            Print: 'True' == 'True',
+            Configure: 'True' == 'True',
+        };
+
+
+        //MR-var statusItems;
+        //MR-var stateItems;
+        //MR-var cityItems = [];
+        var isConsultMode = "False" == "True";
+        Consult(isConsultMode);
+        function Consult(val) {
+            if (val) {
+                $(':input').attr('readonly', 'readonly');
+                $(':input').attr('disabled', 'true');
+                $('.noConsult').removeAttr('readonly');
+                $('.noConsult').removeAttr('disabled');
+            }
+        }
+
+        function BackToGrid() {
+            location.href = "/Frontal/Solicitudes/";
+        }
+
+        function SaveElementAttributes() {
+            if ($('#hdnConfigureType').val() == "1") {
+                $.post("/Frontal/Solicitudes/WriteScriptSettings", { CustomModuleAttributeList: mainElementObject, ChildModuleAttributeList: childElementObject }, function (data) {
+                    $('#hdnConfigureType').val("0");
+                    location.reload(true);
+                }, "json");
+            } else {
+                $.post("/Frontal/Solicitudes/ReadScriptSettings", function (data) {
+                    mainElementObject = JSON.parse(data.MainElement);
+                    childElementObject = JSON.parse(data.ChildElement);
+
+                    for (var i = 0; i < mainElementObject.length; i++) {
+                        var mainElementAttributes = '<div class="col-sm-2">';
+                        mainElementAttributes += '<div class="displayAttributes requiredAttribute"><a class="requiredClick" title="' + (mainElementObject[i].IsRequired == true ? "Required" : "Not Required") + '" onclick="setRequired(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsRequired == true ? "/Images/Required.png" : "/Images/Not-Required.png") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes visibleAttribute"><a class="visibleClick" title="' + (mainElementObject[i].IsVisible == true ? "Visible" : "In Visible") + '" onclick="setVisible(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsVisible == true ? "/Images/Visible.png" : "/Images/InVisible.png") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes readOnlyAttribute"><a class="readOnlyClick" title="' + (mainElementObject[i].IsReadOnly == true ? "Disabled" : "Enabled") + '" onclick="setReadOnly(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].IsReadOnly == true ? "/Images/Disabled.png" : "/Images/Enabled.png") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes defaultValueAttribute"><a id="hlDefaultValue_' + i.toString() + '" class="defaultValueClick" title="' + (mainElementObject[i].DefaultValue) + '" onclick="setDefaultValue(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].DefaultValue != '' && mainElementObject[i].DefaultValue != null ? "/Images/default-value.png" : "/Images/Not-Default-Value.png") + '" alt="" /></a></div>';
+                        mainElementAttributes += '<div class="displayAttributes helpTextAttribute"><a id="hlHelpText_' + i.toString() + '" class="helpTextClick" title="' + (mainElementObject[i].HelpText) + '" onclick="setHelpText(' + i.toString() + ', this, 1)"><img src="' + (mainElementObject[i].HelpText != '' && mainElementObject[i].HelpText != null ? "/Images/green-help.png" : "/Images/red-help.jpg") + '" alt="" /></a></div>';
+                        mainElementAttributes += '</div>';
+                        $('#' + mainElementObject[i].inputId).parent().closest('.form-group').show();
+
+                        $('#' + mainElementObject[i].inputId).closest('.col-sm-8').after(mainElementAttributes);
+                    }
+
+                    for (var i = 0; i < childElementObject.length; i++) {
+                        $('.' + childElementObject[i].inputId + 'Header').show();
+                        $('.' + childElementObject[i].inputId).parent().show();
+                        $('.' + childElementObject[i].inputId + 'Header').append(returnAttributeHTML(i));
+                    }
+
+                    $('#ConfigureSave').text('Save Settings');
+                    $('#hdnConfigureType').val("1");
+                });
+            }
+        }
+    </script>
+    <script type="text/javascript" src="ViewEditor_files/Solicitudes.js"></script>
+    <script type="text/javascript" src="ViewEditor_files/SolicitudesGeneral.js"></script>
+
+
+    <script type="text/javascript">
+        //Notif Main function
+        function showNotification(message, type) {
+            switch (type) {
+                case "success":
+                    toastr.success(message, '');
+                    break;
+                case "warning":
+                    toastr.warning(message, '');
+                    break;
+                case "error":
+                    toastr.error(message, '');
+                    break;
+            }
+            //$.notify(message, type);
+        }
+        var countSeconds = 0;
+        var cookiesTimeout = 1800;
+        $('.DisplayLogin').hide();
+        var timerInterval = setInterval('updateTimer()', 1000);
+        $(document).ajaxStart(function() {
+            countSeconds = 0;
+        });
+        function updateTimer() {
+            countSeconds = countSeconds + 1;
+            if (countSeconds >=  cookiesTimeout) {
+                clearInterval(timerInterval);
+                $('.DisplayLogin').show();
+            }
+        }
+        function SessionAlive(data){
+            if (data == '') {
+                $('.DisplayLogin').hide();
+                $('.InvalidPassword').text('')
+            }else {
+                $('.DisplayLogin').show();
+                $('.InvalidPassword').text(data);
+            }
+        }
+    </script>
+    <script src="ViewEditor_files/general.js" type="text/javascript"></script>
+
+<!-- Visual Studio Browser Link -->
+<script type="application/json" id="__browserLink_initializationData">
+    {"appName":"Firefox","requestId":"451e24fe9108429a890c1bef80234986"}
+</script>
+<script type="text/javascript" src="ViewEditor_files/browserLink" async="async"></script>
+<!-- End Browser Link -->
+
+
+
+<div class="modal fade in" id="dvAttributeValue" style="background-color:rgba(0, 0, 0, 0.7);">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" id="lblAttributeType">Value</label>
+                    <div class="col-sm-7">
+                        <input title="Value" class="form-control" id="txtAttributeValue" type="text">
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-primary" onclick="SaveValue()">Submit</a>
+                    </div>
+                    <input id="hdnAttributType" type="hidden">
+                    <input id="hdnAttributElement" type="hidden">
+                    <input id="hdnAttributNumber" type="hidden">
+                    <input id="hdnElementType" type="hidden">
+                </div>
+            </div>
+        </div>
+    </div>
+</div><div aria-hidden="true" class="modal fade in PropertyBusinessModal" id="PropertyBusinessModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Property &amp; Business Rules
+                                        <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#PropertyModal-form" onclick="GetPropertyBag()">Properties</a>
+                                        </div>
+                                        <div class="clearfix col-sm-12">&nbsp;</div>
+                                        <div class="col-sm-12">
+                                            <a class="btn btn-primary full-width" data-dismiss="modal" data-toggle="modal" data-target="#BusinessRule-form" onclick="GetBusinessRule()">Business Rule</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div aria-hidden="true" class="modal fade in PropertyModal" id="PropertyModal-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div><div aria-hidden="true" class="modal fade in BusinessRuleModal" id="BusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div><div aria-hidden="true" class="modal fade in AddBusinessRuleModal" id="AddBusinessRule-form" style="display: none; background-color:rgba(0, 0, 0, 0.7);">
+                    </div><div aria-hidden="true" class="modal fade in DisplayLogin" id="modal-form" style="background-color: rgba(0, 0, 0, 0.7); display: none;">
+        
+
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+<form action="/Account/ReLogin" data-ajax="true" data-ajax-method="Post" data-ajax-success="SessionAlive" id="form0" method="post" novalidate="novalidate">                    <div class="row">
+                        <div class="col-sm-12 b-r">
+                            <h3 class="m-t-none m-b">Su sesión de inicio de sesión se ha expirado, por favor, introduzca su contraseña para continuar con la aplicación.</h3>
+                            <p>Acceso al Sistema</p>
+                            
+
+                                <span class="field-validation-error">
+                                    <span class="InvalidPassword"></span>
+                                </span>
+
+                            <div class="form-group">
+<input data-val="true" data-val-required="Clave de Acceso Requerida" id="UserName" name="UserName" value="admin" type="hidden"><label for="UserName">Clave de Acceso</label>                                <span>admin</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Password">Contraseña</label>
+                                <input class="form-control valid" data-val="true" data-val-required="Contraseña Requerida" id="Password" name="Password" placeholder="Contraseña" type="password">
+                                <span class="field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+                            </div>
+                            <input value="Iniciar sesión" class="btn btn-primary block full-width m-b" type="submit">
+                        </div>
+                    </div>
+</form>            </div>
+        </div>
+    </div>
+<script src="ViewEditor_files/jquery_003.js"></script>
+<script src="ViewEditor_files/jquery_002.js"></script>
+<script src="ViewEditor_files/jquery.js" type="text/javascript"></script>
+
+
+
+
+
+
+    </div></body></html>

@@ -1,0 +1,11 @@
+#tool_box,#lienzo{
+	height: auto;
+	min-height: 100px;
+	overflow: visible;
+	border: 1px solid grey;
+	background-color:white;
+	width: 100%;
+}
+.draggable_grid{
+	border: .05em solid red;
+}
