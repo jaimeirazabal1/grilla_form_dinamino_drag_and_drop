@@ -1,4 +1,4 @@
-#tool_bar{
+.tool_bar{
 	height: auto;
 	border: 1px solid grey;
 	background-color:white;
@@ -19,4 +19,7 @@
 }
 .ui-droppable-hover{
 	background-color: yellow !important;
+}
+.btn_agregar_tabs{
+	margin-left: 10px !important;
 }
