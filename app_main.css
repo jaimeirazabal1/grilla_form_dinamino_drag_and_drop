@@ -1,11 +1,22 @@
-#tool_box,#lienzo{
+#tool_bar{
 	height: auto;
-	min-height: 100px;
-	overflow: visible;
 	border: 1px solid grey;
 	background-color:white;
 	width: 100%;
+	padding:20px;
+	margin-bottom: 10px;
 }
+.gris{
+	min-height:59px;
+	background-color:#f5f5f5;
+	border-radius:4px;
+	
+	border: .2px dotted black;
+}
+
 .draggable_grid{
 	border: .05em solid red;
+}
+.ui-droppable-hover{
+	background-color: yellow !important;
 }
