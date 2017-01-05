@@ -29,7 +29,7 @@ $(document).ready(function(){
 		tabs_editables++;
 		$(".tabs-container ul").eq(0).find("li.active").removeClass('active');
 		$(".tabs-container ul").eq(0).append("<li class='active'><a data-toggle='tab' id='"+tabs_editables+"' class='tab_editable_"+tabs_editables+"' contenteditable='true'>Escribe el Nombre aqui</a></li>");
-		$(".tab-content").append("<div id='' class='tab-pane content_tab_"+tabs_editables+"'><div class='panel-body'><h1>Contenido del tab "+tabs_editables+"</h1></div></div>")
+		$(".tab-content").append("<div id='' class='tab-pane content_tab_"+tabs_editables+"'><div class='panel-body'><h1 contenteditable='true'>Contenido del tab "+tabs_editables+"</h1></div></div>")
 		tool_bar_dinamic = '<div id="tool_bar_'+tabs_editables+'" class="tool_bar"></div>';
 		$(".content_tab_"+tabs_editables+" .panel-body").append(tool_bar_dinamic);
 		$('#tool_bar_'+tabs_editables).append(controles)
