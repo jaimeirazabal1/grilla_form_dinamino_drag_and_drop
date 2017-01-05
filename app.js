@@ -27,8 +27,9 @@ $(document).ready(function(){
 	$(".tabs-container").find("a").append("&nbsp;&nbsp;<button class='btn btn-success btn-xs btn_agregar_tabs'>+</button>");
 	$("body").on("click",".btn_agregar_tabs",function(){
 		tabs_editables++;
+		boton_cerrar = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>';
 		$(".tabs-container ul").eq(0).find("li.active").removeClass('active');
-		$(".tabs-container ul").eq(0).append("<li class='active'><a data-toggle='tab' id='"+tabs_editables+"' class='tab_editable_"+tabs_editables+"' contenteditable='true'>Escribe el Nombre aqui</a></li>");
+		$(".tabs-container ul").eq(0).append("<li class='active'><a data-toggle='tab' id='"+tabs_editables+"' class='tab_editable_"+tabs_editables+"' contenteditable='true'>Escribe el Nombre aqui</a>"+boton_cerrar+"</li>");
 		$(".tab-content").append("<div id='' class='tab-pane content_tab_"+tabs_editables+"'><div class='panel-body'><h1 contenteditable='true'>Contenido del tab "+tabs_editables+"</h1></div></div>")
 		tool_bar_dinamic = '<div id="tool_bar_'+tabs_editables+'" class="tool_bar"></div>';
 		$(".content_tab_"+tabs_editables+" .panel-body").append(tool_bar_dinamic);
@@ -36,9 +37,9 @@ $(document).ready(function(){
 		$("#"+tabs_editables).droppable({
 		    activeClass: "ui-state-highlight",
 		    drop: function (event, ui) {
-		        $(this).attr("id")
+		        console.log();
 		        $(ui.draggable).remove()
-		        $(".content_tab_"+tabs_editables+" .panel-body").append('<div class="control-group" data-drop="true">'+ui.draggable.html()+'</div>')
+		        $(".content_tab_"+$(this).attr('class').split(" ")[0].split("_")[2]+" .panel-body").append('<div class="control-group" data-drop="true">'+ui.draggable.html()+'</div>')
 		        //$(".tabs-container").tabs("refresh");
 		        $('.control-group').draggable();
 		    }
@@ -72,6 +73,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	$(this).parent().find('.close').remove();
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
@@ -93,6 +96,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -115,6 +120,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -137,6 +144,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -159,6 +168,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -181,6 +192,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -202,6 +215,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -223,6 +238,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -244,6 +261,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -265,6 +284,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -287,6 +308,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -308,6 +331,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
@@ -329,6 +354,8 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
 		    	console.log('soltaron algo por aqui')
 		    	$(this).parent().find('.close').remove();
 
