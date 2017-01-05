@@ -39,7 +39,7 @@ $(document).ready(function(){
 		   // accept: ".control-group",
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
-		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -59,6 +59,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -77,6 +79,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -95,6 +99,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -113,6 +119,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -131,6 +139,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -148,6 +158,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -165,6 +177,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -182,6 +196,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -199,6 +215,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -217,6 +235,8 @@ $(document).ready(function(){
 
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -234,6 +254,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
@@ -251,6 +273,8 @@ $(document).ready(function(){
 		   hoverClass: "hover",
 		    drop: function( event, ui ) {
 		    	console.log('soltaron algo por aqui')
+		    	$(this).parent().find('.close').remove();
+		    	
 		       	var droppable = $(this);
 		       	var draggable = ui.draggable;
 		       	draggable.prop('style','');
