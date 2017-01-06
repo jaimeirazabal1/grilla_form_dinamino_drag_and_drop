@@ -70,6 +70,11 @@ function buscarCategoria(categoria,plugins_categories){
 	return false;
 }
 $(document).ready(function(){
+	 $('.dropdown-submenu a.test').on("click", function(e){
+	    $(this).next('ul').toggle();
+	    e.stopPropagation();
+	    e.preventDefault();
+	  });
 	var tool_bar = '<div id="tool_bar_'+tabs_editables+'" class="tool_bar"></div>';
 	var controles = '<ul class="nav nav-tabs">'+
   		'<li role="presentation" class="dropdown">'+
@@ -104,12 +109,13 @@ $(document).ready(function(){
 		    			plugins_categories.push({
 		    				categoria : herramientas_array[i].categoria
 		    			});
-		    			tools_array+='<li>';
-		    				tools_array+='<a href="#">'+herramientas_array[i].categoria+' <i class="icon-arrow-right"></i></a>';
-		    				tools_array+='<ul class="dropdown-menu sub-menu '+herramientas_array[i].categoria+'">';
+		    			tools_array+='<li class="dropdown-submenu">';
+		    				tools_array+='<a href="#" class="test" tabindex="-1">'+herramientas_array[i].categoria+' <span class="caret"></span></a>';
+		    				tools_array+='<ul class="dropdown-menu'+herramientas_array[i].categoria+'">';
 		    					for (var j = 0; j < herramientas_array.length ; j++) {
-
-		    						tools_array+='<li><a href="#">'+herramientas_array[i].categoria+'</a></li>';
+		    						if ( herramientas_array[j].categoria == herramientas_array[i].categoria) {
+		    							tools_array+='<li><p>&nbsp;&nbsp;<img src="'+herramientas_array[j].icono+'" nombre="'+herramientas_array[j].nombre+'" class="plugin_tool" width="20px" >&nbsp;&nbsp;<a href="#">'+herramientas_array[j].nombre+'</a></p></li>';
+		    						}
 		    					}
 		    				tools_array+='</ul>';
 	                    tools_array+='</li>';
@@ -122,7 +128,7 @@ $(document).ready(function(){
 
 	controles = controles+tools_array;
 	
-
+ 
 
 	/*codigo para los tabs*/
 	$(".tabs-container").find("a").append("&nbsp;&nbsp;<button class='btn btn-success btn-xs btn_agregar_tabs'>+</button>");
@@ -671,4 +677,9 @@ $(document).ready(function(){
 		"</div>"
 		$(".panel_propiedades").append(nueva);
 	});
+
+	// $(".dropdown-menu li").hover(function(e){
+	// 	console.log($(this).css('position'));
+	// 	$(".sub-menu").css("top",$(this).css('top')-10)
+	// })
 });
