@@ -543,7 +543,67 @@ $(document).ready(function(){
 	$("body").on("click",".close",function(){
 		$(this).parent().remove();
 	});
-
-
+	var modal_cambio_input = '<div class="modal fade" id="myModalCambioInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog modal-lg" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h4 class="modal-title" id="myModalLabel">Modal title</h4> </div> <div class="modal-body" id="body_cambio_input"></div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <button type="button" class="btn btn-primary">Guardar</button> </div> </div> </div> </div>';
+	$("#main").append(modal_cambio_input)
 	$('.control-group').draggable();
+
+	$('body').on("contextmenu",".control-group",function(e){
+		e.preventDefault();
+		$('#myModalCambioInput').modal('show');
+		var label = $(this).find(".control-label");
+		$("#myModalLabel").text(label.text());
+		body = "";
+
+		type = $(this).find(".controls").eq(0).children().eq(0).attr("type");
+		tagName = $(this).find(".controls").eq(0).children().eq(0).prop("tagName");
+		console.log(type,tagName)
+		if (type=="text" && tagName == "INPUT") {
+			input = $(this).find(".controls").eq(0).children().eq(0);
+				body += "<div class='col-md-6 panel panel-default'>"+
+							"<center><h3>Input Type</h3></center>"+
+							"<div class='textarea_cambio_div'>"+
+								"<label><input type='radio' name='text_cambio' checked class='text_cambio'> Text</label>"+
+							"</div>";
+					body += "<div class='textarea_cambio_div'>"+
+								"<label><input type='radio' name='text_cambio' class='textarea_cambio'> Textarea</label>"+
+							"</div>";
+					body += "<div class='textarea_cambio_div'>"+
+								"<label><input type='radio' name='text_cambio' class='select_cambio'> Select</label>"+
+							"</div>";
+					body += "<div class='textarea_cambio_div'>"+
+								"<label><input type='radio' name='text_cambio' class='date_cambio'> Date</label>"+
+							"</div>"+
+						"</div>";
+				body += "<div class='col-md-6 panel panel-default'>"+
+							"<center><span style='padding:10px;font-size:16px;font-weight: 600;margin-top:10px'>Propiedades</span>&nbsp;&nbsp;<button class='btn btn-primary btn-xs' id='add_propiedades' style='margin-top:4px;'>+</button></center>"+
+							"<div class='panel_propiedades'>"+
+
+							"</div>"+
+						"<br></div>";
+
+		}
+		$("#body_cambio_input").html("<div class='row'>"+body+"</div>");
+			nueva = "<div class='row'>"+
+				"<div class='col-xs-6'><input type='text' placeholder='Class' value='class' class='form-control propiedad_nombre'></div>"+
+				"<div class='col-xs-6'><input type='text' placeholder='Valor Class' value='"+input.attr("class")+"' class='form-control propiedad_valor'></div>"+
+			"</div>";
+			$(".panel_propiedades").append(nueva);
+			nueva = "<div class='row'>"+
+				"<div class='col-xs-6'><input type='text' placeholder='Class' value='id' class='form-control propiedad_nombre'></div>"+
+				"<div class='col-xs-6'><input type='text' placeholder='Valor Class' value='"+input.attr("id")+"' class='form-control propiedad_valor'></div>"+
+			"</div>";
+			$(".panel_propiedades").append(nueva);
+			nueva = "<div class='row'>"+
+				"<div class='col-xs-6'><input type='text' placeholder='Class' value='name' class='form-control propiedad_nombre'></div>"+
+				"<div class='col-xs-6'><input type='text' placeholder='Valor Class' value='"+input.attr("name")+"' class='form-control propiedad_valor'></div>"+
+			"</div>";
+			$(".panel_propiedades").append(nueva);
+	})
+	$("body").on("click","#add_propiedades",function(){
+		nueva = "<div class='row'>"+
+			"<div class='col-xs-6'><input type='text' placeholder='Nombre Propiedad' class='form-control propiedad_nombre'></div>"+
+			"<div class='col-xs-6'><input type='text' placeholder='Valor Propiedad' class='form-control propiedad_valor'></div>"+
+		"</div>"
+		$(".panel_propiedades").append(nueva);
+	});
 });
