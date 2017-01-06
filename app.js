@@ -1,7 +1,31 @@
+$(function(){
+    $(".dropdown-menu > li > a.trigger").on("click",function(e){
+        var current=$(this).next();
+        var grandparent=$(this).parent().parent();
+        if($(this).hasClass('left-caret')||$(this).hasClass('right-caret'))
+            $(this).toggleClass('right-caret left-caret');
+        grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
+        grandparent.find(".sub-menu:visible").not(current).hide();
+        current.toggle();
+        e.stopPropagation();
+    });
+    $(".dropdown-menu > li > a:not(.trigger)").on("click",function(){
+        var root=$(this).closest('.dropdown');
+        root.find('.left-caret').toggleClass('right-caret left-caret');
+        root.find('.sub-menu:visible').hide();
+    });
+});
 var tabs_editables = 0;
 var herramientas_array=[
     {
     "nombre":"Datepicker", 
+    "html":"<div class='control-group' data-drop='true'><label class='control-label'>Etiqueta</label><div class='controls'><input class='form-control' id='Controller' name='Controller' type='text' value='Sin valor'></div></div>",
+    "icono":"https://image.freepik.com/iconos-gratis/15-de-mayo-la-pagina-del-calendario-simbolo-interfaz_318-58187.jpg",
+    "tooltip":"Plugin para seleccionar una fecha",
+    "categoria":"Fechas"
+    },
+    {
+    "nombre":"Datepicker 2", 
     "html":"<div class='control-group' data-drop='true'><label class='control-label'>Etiqueta</label><div class='controls'><input class='form-control' id='Controller' name='Controller' type='text' value='Sin valor'></div></div>",
     "icono":"https://image.freepik.com/iconos-gratis/15-de-mayo-la-pagina-del-calendario-simbolo-interfaz_318-58187.jpg",
     "tooltip":"Plugin para seleccionar una fecha",
@@ -15,13 +39,36 @@ var herramientas_array=[
     "categoria":"Autocompletes"
     },
     {
+    "nombre":"Tagsinput 2", 
+    "html":"<div class='control-group' data-drop='true'><label class='control-label'>Tags</label><div class='controls'><input class='form-control' id='Controller' name='Controller' type='text' value='Sin valor'></div></div>",
+    "icono":"https://maxcdn.icons8.com/Android_L/PNG/512/Shopping/tags-512.png",
+    "tooltip":"Plugin para insertar tags",
+    "categoria":"Autocompletes"
+    },
+    {
     "nombre":"Editor", 
+    "html":"<div class='control-group' data-drop='true'><label class='control-label'>Editor</label><div class='controls'><input class='form-control' id='Controller' name='Controller' type='text' value='Sin valor'></div></div>",
+    "icono":"http://findicons.com/files/icons/1376/smoothicons_7/128/html_editor.png",
+    "tooltip":"Plugin para editor de texto",
+    "categoria":"Editores"
+    },
+        {
+    "nombre":"Editor2", 
     "html":"<div class='control-group' data-drop='true'><label class='control-label'>Editor</label><div class='controls'><input class='form-control' id='Controller' name='Controller' type='text' value='Sin valor'></div></div>",
     "icono":"http://findicons.com/files/icons/1376/smoothicons_7/128/html_editor.png",
     "tooltip":"Plugin para editor de texto",
     "categoria":"Editores"
     }
 ];
+var plugins_categories = [];
+function buscarCategoria(categoria,plugins_categories){
+	for (var i = 0; i < plugins_categories.length; i++) {
+		if (plugins_categories[i].categoria == categoria) {
+			return true;
+		}
+	}
+	return false;
+}
 $(document).ready(function(){
 	var tool_bar = '<div id="tool_bar_'+tabs_editables+'" class="tool_bar"></div>';
 	var controles = '<ul class="nav nav-tabs">'+
@@ -48,8 +95,26 @@ $(document).ready(function(){
     		'<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar Plugins<span class="caret"></span></a>'+
     
 		    '<ul class="dropdown-menu">';
+
 		    	for (var i = 0; i < herramientas_array.length ; i++) {
-		    		tools_array+='<li title="'+herramientas_array[i].tooltip+'" ><p style="padding:6px" nombre="'+herramientas_array[i].nombre+'">'+herramientas_array[i].nombre+'&nbsp;&nbsp;<img width="20" nombre="'+herramientas_array[i].nombre+'" class="plugin_tool" src="'+herramientas_array[i].icono+'"></p></li>';
+		    		console.log(herramientas_array[i].categoria,buscarCategoria(herramientas_array[i].categoria,plugins_categories))
+		    		if (buscarCategoria(herramientas_array[i].categoria,plugins_categories)) {
+		    			//$('.'+herramientas_array[i].categoria).append('<li><a href="#">'+herramientas_array[i].categoria+'</a></li>')
+		    		}else{
+		    			plugins_categories.push({
+		    				categoria : herramientas_array[i].categoria
+		    			});
+		    			tools_array+='<li>';
+		    				tools_array+='<a href="#">'+herramientas_array[i].categoria+' <i class="icon-arrow-right"></i></a>';
+		    				tools_array+='<ul class="dropdown-menu sub-menu '+herramientas_array[i].categoria+'">';
+		    					for (var j = 0; j < herramientas_array.length ; j++) {
+
+		    						tools_array+='<li><a href="#">'+herramientas_array[i].categoria+'</a></li>';
+		    					}
+		    				tools_array+='</ul>';
+	                    tools_array+='</li>';
+		    		}
+		    		//tools_array+='<li title="'+herramientas_array[i].tooltip+'" ><img width="20" nombre="'+herramientas_array.nombre+'" class="plugin_tool pull-left" src="'+herramientas_array[i].icono+'"><p style="padding:6px" nombre="'+herramientas_array[i].nombre+'">'+herramientas_array[i].nombre+'&nbsp;&nbsp;</p></li>';
 		    	}
 		    tools_array +='</ul>';
 		  tools_array +='</li>';
