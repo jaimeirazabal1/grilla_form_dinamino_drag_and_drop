@@ -16,6 +16,7 @@ $(function(){
     });
 });
 var tabs_editables = 0;
+var controlGroup = '';
 var herramientas_array=[
     {
     "nombre":"Datepicker", 
@@ -614,12 +615,13 @@ $(document).ready(function(){
 	$("body").on("click",".close",function(){
 		$(this).parent().remove();
 	});
-	var modal_cambio_input = '<div class="modal fade" id="myModalCambioInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog modal-lg" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h4 class="modal-title" id="myModalLabel">Modal title</h4> </div> <div class="modal-body" id="body_cambio_input"></div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <button type="button" class="btn btn-primary">Guardar</button> </div> </div> </div> </div>';
+	var modal_cambio_input = '<div class="modal fade" id="myModalCambioInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog modal-lg" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h4 class="modal-title" id="myModalLabel">Modal title</h4> </div> <div class="modal-body" id="body_cambio_input"></div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <button type="button" class="btn btn-primary" id="guardar_cambio_input">Guardar</button> </div> </div> </div> </div>';
 	$("#main").append(modal_cambio_input)
 	$('.control-group').draggable();
 
 	$('body').on("contextmenu",".control-group",function(e){
 		e.preventDefault();
+		controlGroup = $(this);
 		$('#myModalCambioInput').modal('show');
 		var label = $(this).find(".control-label");
 		$("#myModalLabel").text(label.text());
@@ -633,16 +635,16 @@ $(document).ready(function(){
 				body += "<div class='col-md-6 panel panel-default'>"+
 							"<center><h3>Input Type</h3></center>"+
 							"<div class='textarea_cambio_div'>"+
-								"<label><input type='radio' name='text_cambio' checked class='text_cambio'> Text</label>"+
+								"<label><input type='radio' name='text_cambio' checked value='text' class='text_cambio'> Text</label>"+
 							"</div>";
 					body += "<div class='textarea_cambio_div'>"+
-								"<label><input type='radio' name='text_cambio' class='textarea_cambio'> Textarea</label>"+
+								"<label><input type='radio' name='text_cambio' value='textarea' class='text_cambio'> Textarea</label>"+
 							"</div>";
 					body += "<div class='textarea_cambio_div'>"+
-								"<label><input type='radio' name='text_cambio' class='select_cambio'> Select</label>"+
+								"<label><input type='radio' name='text_cambio' value='select' class='text_cambio'> Select</label>"+
 							"</div>";
 					body += "<div class='textarea_cambio_div'>"+
-								"<label><input type='radio' name='text_cambio' class='date_cambio'> Date</label>"+
+								"<label><input type='radio' name='text_cambio' value='radio' class='text_cambio'> Date</label>"+
 							"</div>"+
 						"</div>";
 				body += "<div class='col-md-6 panel panel-default'>"+
@@ -672,12 +674,29 @@ $(document).ready(function(){
 	})
 	$("body").on("click","#add_propiedades",function(){
 		nueva = "<div class='row'>"+
-			"<div class='col-xs-6'><input type='text' placeholder='Nombre Propiedad' class='form-control propiedad_nombre'></div>"+
+			"<div class='col-xs-5'><input type='text' placeholder='Propiedad' class='form-control propiedad_nombre'></div>"+
 			"<div class='col-xs-6'><input type='text' placeholder='Valor Propiedad' class='form-control propiedad_valor'></div>"+
+			"<div class='col-xs-1'><button class='close' onclick='$(this).parent().parent().remove()'>x</button></div>"
 		"</div>"
 		$(".panel_propiedades").append(nueva);
 	});
 
+	$("body").on("click","#guardar_cambio_input",function(){
+		$(".text_cambio").each(function(){
+			if ($(this).is(":checked")) {
+				tipo = $(this).val();
+				console.log('tipo:',tipo);
+			}
+		});
+
+		$(".propiedad_nombre").each(function(i){
+			console.log($(this).val(),$('.propiedad_valor').eq(i).val());
+		})
+	});
+
+	$("body").on("click",".text_cambio",function(){
+		$(this).attr("checked",true)
+	})
 	// $(".dropdown-menu li").hover(function(e){
 	// 	console.log($(this).css('position'));
 	// 	$(".sub-menu").css("top",$(this).css('top')-10)
