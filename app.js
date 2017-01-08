@@ -636,7 +636,6 @@ $(document).ready(function(){
 
 		type = $(this).find(".controls").eq(0).children().eq(0).attr("type");
 		tagName = $(this).find(".controls").eq(0).children().eq(0).prop("tagName");
-		// console.log(type,tagName)
 		if (type=="text" && tagName == "INPUT" || type=="textarea" && tagName == "TEXTAREA") {
 			input = $(this).find(".controls").eq(0).children().eq(0);
 				body += "<div class='col-md-6 panel panel-default'>"+
@@ -666,7 +665,7 @@ $(document).ready(function(){
 								"<label><input type='radio' name='text_cambio' value='select' class='text_cambio'> Select</label>"+
 							"</div>";
 					body += "<div class='textarea_cambio_div'>"+
-								"<label><input type='radio' name='text_cambio' value='radio' class='text_cambio'> Date</label>"+
+								"<label><input type='radio' name='text_cambio' value='date' class='text_cambio'> Date</label>"+
 							"</div>"+
 						"</div>";
 				body += "<div class='col-md-6 panel panel-default'>"+
@@ -697,7 +696,7 @@ $(document).ready(function(){
 								"<label><input type='radio' name='text_cambio' checked value='select' class='text_cambio'> Select</label>"+
 							"</div>";
 					body += "<div class='textarea_cambio_div'>"+
-								"<label><input type='radio' name='text_cambio' value='radio' class='text_cambio'> Date</label>"+
+								"<label><input type='radio' name='text_cambio' value='date' class='text_cambio'> Date</label>"+
 							"</div>"+
 						"</div>";
 
@@ -735,6 +734,53 @@ $(document).ready(function(){
 
 		}
 
+		if (tagName == 'DIV') {
+			input = $(this).find(".controls").eq(0).children().eq(0);
+				body += "<div class='col-md-6 panel panel-default'>"+
+							"<center><h3>Input Type</h3></center>";
+					if (type == 'text') {
+
+						body +=	"<div class='textarea_cambio_div'>"+
+								"<label><input type='radio' name='text_cambio' checked value='text' class='text_cambio'> Text</label>"+
+							"</div>";
+					}else{
+						body +=	"<div class='textarea_cambio_div'>"+
+								"<label><input type='radio' name='text_cambio' value='text' class='text_cambio'> Text</label>"+
+							"</div>";
+					}
+					
+					if (tagName == 'TEXTAREA') {
+						body += "<div class='textarea_cambio_div'>"+
+									"<label><input type='radio' name='text_cambio' checked value='textarea' class='text_cambio'> Textarea</label>"+
+								"</div>";
+					}else{
+
+						body += "<div class='textarea_cambio_div'>"+
+									"<label><input type='radio' name='text_cambio' value='textarea' class='text_cambio'> Textarea</label>"+
+								"</div>";
+					}
+					body += "<div class='textarea_cambio_div'>"+
+								"<label><input type='radio' name='text_cambio' value='select' class='text_cambio'> Select</label>"+
+							"</div>";
+					if (tagName == 'DIV') {
+						body += "<div class='textarea_cambio_div'>"+
+									"<label><input type='radio' name='text_cambio' checked value='date' class='text_cambio'> Date</label>"+
+								"</div>"+
+							"</div>";
+
+					}else{
+						body += "<div class='textarea_cambio_div'>"+
+									"<label><input type='radio' name='text_cambio' value='date' class='text_cambio'> Date</label>"+
+								"</div>"+
+							"</div>";	
+					}
+				body += "<div class='col-md-6 panel panel-default'>"+
+							"<center><span style='padding:10px;font-size:16px;font-weight: 600;margin-top:10px'>Propiedades</span>&nbsp;&nbsp;<button class='btn btn-primary btn-xs' id='add_propiedades' style='margin-top:4px;'>+</button></center>"+
+							"<div class='panel_propiedades'>"+
+
+							"</div>"+
+						"<br></div>";			
+		}
 
 		$("#body_cambio_input").html("<div class='row'>"+body+"</div>");
 
@@ -748,11 +794,14 @@ $(document).ready(function(){
 				"<div class='col-xs-6'><input type='text' placeholder='Valor Class' value='"+input.attr("id")+"' class='form-control propiedad_valor'></div>"+
 			"</div>";
 			$(".panel_propiedades").append(nueva);
-			nueva = "<div class='row'>"+
-				"<div class='col-xs-6'><input type='text' placeholder='Class' value='name' class='form-control propiedad_nombre'></div>"+
-				"<div class='col-xs-6'><input type='text' placeholder='Valor Class' value='"+input.attr("name")+"' class='form-control propiedad_valor'></div>"+
-			"</div>";
-			$(".panel_propiedades").append(nueva);
+			if (typeof input.attr("name") != 'undefined') {
+
+				nueva = "<div class='row'>"+
+					"<div class='col-xs-6'><input type='text' placeholder='Class' value='name' class='form-control propiedad_nombre'></div>"+
+					"<div class='col-xs-6'><input type='text' placeholder='Valor Class' value='"+input.attr("name")+"' class='form-control propiedad_valor'></div>"+
+				"</div>";
+				$(".panel_propiedades").append(nueva);
+			}
 
 			attributes_select = input.data();
 
@@ -816,7 +865,7 @@ $(document).ready(function(){
 		if (tipo == 'textarea') {
 			nuevo_input = "<textarea "+propiedades+" >"+value+"</textarea>";
 		}
-		if (tipo == 'text') {
+		if (tipo == 'text' || tipo == 'date') {
 			nuevo_input = "<input "+propiedades+" >";
 		}
 		if (tipo == 'select') {
@@ -829,7 +878,21 @@ $(document).ready(function(){
 		// console.log(nuevo_input)
 		// console.log(controlGroup)
 		labelName = $("#myModalLabel").text();
-		controlGroup.html("<label class='control-label'>"+labelName+"</label><div class='controls'>"+nuevo_input+"</div>");
+		console.log(tipo)
+		if (tipo == 'date') {
+			controlGroup.html("<label class='control-label'>"+labelName+"</label><div class='controls'><div class='input-group date' id='datetimepicker1'>"+nuevo_input+"<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span></div></div>");
+	          $('.date').datepicker({
+	                todayBtn: "linked",
+	                keyboardNavigation: false,
+	                forceParse: false,
+	                calendarWeeks: true,
+	                autoclose: true,
+	                format: "dd-mm-yyyy"
+	            });
+		}else{
+
+			controlGroup.html("<label class='control-label'>"+labelName+"</label><div class='controls'>"+nuevo_input+"</div>");
+		}
 		$('#myModalCambioInput').modal('hide');
 
 	});
