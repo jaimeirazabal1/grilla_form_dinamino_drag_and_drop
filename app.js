@@ -73,16 +73,28 @@ function buscarCategoria(categoria,plugins_categories){
 	return false;
 }
 $(document).ready(function(){
-	
+	$("body").on("click",".un_espacio_der",function(){
+		var clickada = $('body').find(".clickada");
+		clickada.before("<div class='col-md-1 gris'></div>")
+		// $("").inserBefore(clickada)
+		return false;
+	});
+
+	$("body").on("click",".eliminar_columna",function(){
+		var clickada = $('body').find(".clickada");
+		clickada.remove();
+		return false;
+	});
+
 	var menu = '<ul class="dropdown-menu contextmenu multi-level" aria-labelledby="dLabel" style="position:absolute;display:none">'+
    		'<li class="dropdown-submenu"><a class="menu_a_la_derecha dropdown-toggle" tabindex="-1"  data-toggle="dropdown"  href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la derecha  </a>'+
 	   		'<ul class="dropdown-menu">'+
-	     		'<li><a>Columna de 1 espacio</a></li>'+
-	     		'<li><a>Columna de 2 espacios</a></li>'+
-	     		'<li><a>Columna de 3 espacios</a></li>'+
-	     		'<li><a>Columna de 4 espacios</a></li>'+
-	     		'<li><a>Columna de 5 espacios</a></li>'+
-	     		'<li><a>Columna de 6 espacios</a></li>'+
+	     		'<li><a class="un_espacio_der">Columna de 1 espacio</a></li>'+
+	     		'<li><a class="dos_espacio_der">Columna de 2 espacios</a></li>'+
+	     		'<li><a class="tres_espacio_der">Columna de 3 espacios</a></li>'+
+	     		'<li><a class="cuatro_espacio_der">Columna de 4 espacios</a></li>'+
+	     		'<li><a class="cinco_espacio_der">Columna de 5 espacios</a></li>'+
+	     		'<li><a class="seis_espacio_der">Columna de 6 espacios</a></li>'+
 	    	'</ul>'+
    		'</li>'+
    		'<li class="dropdown-submenu"><a class="menu_a_la_izquierda dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la izquierda</a>'+
@@ -115,11 +127,13 @@ $(document).ready(function(){
 	     		'<li><a>Columna de 6 espacios</a></li>'+
 	    	'</ul>'+
    		'</li>'+
+   		'<li><a class=" bg-danger eliminar_columna"> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
   		'</ul>';
   	$('body').append(menu);
   	var $contextMenu = $(".contextmenu");
 
 	$("body").on("contextmenu",".gris",function(e){
+		$(this).addClass("clickada");
 		$contextMenu.css({
 		    display: "block",
 		    left: e.pageX,
@@ -128,11 +142,21 @@ $(document).ready(function(){
 		return false;
 	});
 	$("body").on("click",function(){
-		console.log("caemos?")
+		// console.log("caemos?")
+		setTimeout(function(){
+
+			$('body').find('.clickada').removeClass('clickada');
+		
+		},1000)
 		$contextMenu.hide();
 	})
 	$contextMenu.on("click", "a", function() {
 	   $contextMenu.hide();
+	   setTimeout(function(){
+
+	   		$('body').find('.clickada').removeClass('clickada');
+	   	
+	   	},1000)
 	});
 
 	 $('.dropdown-submenu a.test').on("click", function(e){
