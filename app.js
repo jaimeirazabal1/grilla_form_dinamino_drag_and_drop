@@ -73,61 +73,238 @@ function buscarCategoria(categoria,plugins_categories){
 	return false;
 }
 $(document).ready(function(){
-	$("body").on("click",".un_espacio_der",function(){
+	$("body").on("click",".der",function(){
 		var clickada = $('body').find(".clickada");
-		clickada.before("<div class='col-md-1 gris'></div>")
+		var cantidad = $(this).attr("id").split("_");
+		clickada.after("<div class='col-md-"+cantidad[0]+" gris'></div>")
 		// $("").inserBefore(clickada)
+		$( ".gris" ).droppable({
+		   hoverClass: "hover",
+		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
+		    	$(this).parent().find('.close').remove();
+		    	
+		       	var droppable = $(this);
+		       	var draggable = ui.draggable;
+		       	draggable.prop('style','');
+		       	// Move draggable into droppable
+		       	if ($(ui.draggable).hasClass('plugin_tool')) {
+			       	for (var i = 0; i < herramientas_array.length; i++) {
+			       		if (herramientas_array[i].nombre == $(ui.draggable).attr('nombre')) {
+
+		       				$(droppable).append(herramientas_array[i].html);
+			       		}
+			       	}
+
+		       	}else{
+		       		
+		       	 draggable.appendTo(droppable);
+		       	}
+		    }
+		});
 		return false;
 	});
-
-	$("body").on("click",".eliminar_columna",function(){
+	$("body").on("click",".iz",function(){
 		var clickada = $('body').find(".clickada");
-		clickada.remove();
+		var cantidad = $(this).attr("id").split("_");
+
+		clickada.before("<div class='col-md-"+cantidad[0]+" gris'></div>");
+		$( ".gris" ).droppable({
+		   hoverClass: "hover",
+		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
+		    	$(this).parent().find('.close').remove();
+		    	
+		       	var droppable = $(this);
+		       	var draggable = ui.draggable;
+		       	draggable.prop('style','');
+		       	// Move draggable into droppable
+		       	if ($(ui.draggable).hasClass('plugin_tool')) {
+			       	for (var i = 0; i < herramientas_array.length; i++) {
+			       		if (herramientas_array[i].nombre == $(ui.draggable).attr('nombre')) {
+
+		       				$(droppable).append(herramientas_array[i].html);
+			       		}
+			       	}
+
+		       	}else{
+		       		
+		       	 draggable.appendTo(droppable);
+		       	}
+		    }
+		});
+		// $("").inserBefore(clickada)
+		return false;
+	});	
+	$("body").on("click",".arri",function(){
+		var clickada = $('body').find(".clickada");
+		var cantidad = $(this).attr("id").split("_");
+		var boton = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>';
+		switch(parseInt(cantidad[0])){
+			case 1:
+				clickada.parent().before("<div class='row'><div class='col-md-12 gris'></div>"+boton+"</div>");
+			break;
+			case 2:
+				clickada.parent().before("<div class='row'><div class='col-md-6 gris'></div><div class='col-md-6 gris'></div>"+boton+"</div>");
+			break;
+			case 3:
+				clickada.parent().before("<div class='row'><div class='col-md-4 gris'></div><div class='col-md-4 gris'></div><div class='col-md-4 gris'></div>"+boton+"</div>");
+			break;
+			case 4:
+				clickada.parent().before("<div class='row'><div class='col-md-3 gris'></div><div class='col-md-3 gris'></div><div class='col-md-3 gris'></div><div class='col-md-3 gris'></div>"+boton+"</div>");
+			break;
+			case 5:
+				clickada.parent().before("<div class='row'><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div>"+boton+"</div>");
+			break;
+			case 6:
+				clickada.parent().before("<div class='row'><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div>"+boton+"</div>");
+			break;
+			default:
+			console.log("NO HACE NADA");
+			break;
+		}
+		$( ".gris" ).droppable({
+		   hoverClass: "hover",
+		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
+		    	$(this).parent().find('.close').remove();
+		    	
+		       	var droppable = $(this);
+		       	var draggable = ui.draggable;
+		       	draggable.prop('style','');
+		       	// Move draggable into droppable
+		       	if ($(ui.draggable).hasClass('plugin_tool')) {
+			       	for (var i = 0; i < herramientas_array.length; i++) {
+			       		if (herramientas_array[i].nombre == $(ui.draggable).attr('nombre')) {
+
+		       				$(droppable).append(herramientas_array[i].html);
+			       		}
+			       	}
+
+		       	}else{
+		       		
+		       	 draggable.appendTo(droppable);
+		       	}
+		    }
+		});
+		// $("").inserBefore(clickada)
+		return false;
+	});	
+	$("body").on("click",".aba",function(){
+		var clickada = $('body').find(".clickada");
+		var cantidad = $(this).attr("id").split("_");
+		var boton = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>';
+
+		switch(parseInt(cantidad[0])){
+			case 1:
+				clickada.parent().after("<div class='row'><div class='col-md-12 gris'></div>"+boton+"</div>");
+			break;
+			case 2:
+				clickada.parent().after("<div class='row'><div class='col-md-6 gris'></div><div class='col-md-6 gris'></div>"+boton+"</div>");
+			break;
+			case 3:
+				clickada.parent().after("<div class='row'><div class='col-md-4 gris'></div><div class='col-md-4 gris'></div><div class='col-md-4 gris'></div>"+boton+"</div>");
+			break;
+			case 4:
+				clickada.parent().after("<div class='row'><div class='col-md-3 gris'></div><div class='col-md-3 gris'></div><div class='col-md-3 gris'></div><div class='col-md-3 gris'></div>"+boton+"</div>");
+			break;
+			case 5:
+				clickada.parent().after("<div class='row'><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div>"+boton+"</div>");
+			break;
+			case 6:
+				clickada.parent().after("<div class='row'><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div><div class='col-md-2 gris'></div>"+boton+"</div>");
+			break;
+			default:
+			console.log("NO HACE NADA");
+			break;
+		}
+		$( ".gris" ).droppable({
+		   hoverClass: "hover",
+		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
+		    	$(this).parent().find('.close').remove();
+		    	
+		       	var droppable = $(this);
+		       	var draggable = ui.draggable;
+		       	draggable.prop('style','');
+		       	// Move draggable into droppable
+		       	if ($(ui.draggable).hasClass('plugin_tool')) {
+			       	for (var i = 0; i < herramientas_array.length; i++) {
+			       		if (herramientas_array[i].nombre == $(ui.draggable).attr('nombre')) {
+
+		       				$(droppable).append(herramientas_array[i].html);
+			       		}
+			       	}
+
+		       	}else{
+		       		
+		       	 draggable.appendTo(droppable);
+		       	}
+		    }
+		});
+		// $("").inserBefore(clickada)
+		return false;
+	});	
+	$("body").on("click",".eliminar_columna",function(){
+		// alert("??")
+		var clickada = $('body').find(".clickada");
+		var cantidad = clickada.parent().find('.gris').length;
+		console.log(cantidad)
+		if (cantidad == 1) {
+			clickada.parent().remove();
+		}else{
+			clickada.remove();
+
+		}
 		return false;
 	});
 
 	var menu = '<ul class="dropdown-menu contextmenu multi-level" aria-labelledby="dLabel" style="position:absolute;display:none">'+
    		'<li class="dropdown-submenu"><a class="menu_a_la_derecha dropdown-toggle" tabindex="-1"  data-toggle="dropdown"  href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la derecha  </a>'+
 	   		'<ul class="dropdown-menu">'+
-	     		'<li><a class="un_espacio_der">Columna de 1 espacio</a></li>'+
-	     		'<li><a class="dos_espacio_der">Columna de 2 espacios</a></li>'+
-	     		'<li><a class="tres_espacio_der">Columna de 3 espacios</a></li>'+
-	     		'<li><a class="cuatro_espacio_der">Columna de 4 espacios</a></li>'+
-	     		'<li><a class="cinco_espacio_der">Columna de 5 espacios</a></li>'+
-	     		'<li><a class="seis_espacio_der">Columna de 6 espacios</a></li>'+
+	     		'<li><a class=" der" id="1_espacio">Columna de 1 espacio</a></li>'+
+	     		'<li><a class=" der" id="2_espacio">Columna de 2 espacios</a></li>'+
+	     		'<li><a class=" der" id="3_espacio">Columna de 3 espacios</a></li>'+
+	     		'<li><a class=" der" id="4_espacio">Columna de 4 espacios</a></li>'+
+	     		'<li><a class=" der" id="5_espacio">Columna de 5 espacios</a></li>'+
+	     		'<li><a class=" der" id="6_espacio">Columna de 6 espacios</a></li>'+
 	    	'</ul>'+
    		'</li>'+
    		'<li class="dropdown-submenu"><a class="menu_a_la_izquierda dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la izquierda</a>'+
 	   		'<ul class="dropdown-menu">'+
-	     		'<li><a>Columna de 1 espacio</a></li>'+
-	     		'<li><a>Columna de 2 espacios</a></li>'+
-	     		'<li><a>Columna de 3 espacios</a></li>'+
-	     		'<li><a>Columna de 4 espacios</a></li>'+
-	     		'<li><a>Columna de 5 espacios</a></li>'+
-	     		'<li><a>Columna de 6 espacios</a></li>'+
+	     		'<li><a class="iz" id="1_espacio">Columna de 1 espacio</a></li>'+
+	     		'<li><a class="iz" id="2_espacio">Columna de 2 espacios</a></li>'+
+	     		'<li><a class="iz" id="3_espacio">Columna de 3 espacios</a></li>'+
+	     		'<li><a class="iz" id="4_espacio">Columna de 4 espacios</a></li>'+
+	     		'<li><a class="iz" id="5_espacio">Columna de 5 espacios</a></li>'+
+	     		'<li><a class="iz" id="6_espacio">Columna de 6 espacios</a></li>'+
 	    	'</ul>'+
    		'</li>'+
    		'<li class="dropdown-submenu"><a class="menu_a_la_arriba dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar fila arriba</a>'+
 	   		'<ul class="dropdown-menu">'+
-	     		'<li><a>Columna de 1 espacio</a></li>'+
-	     		'<li><a>Columna de 2 espacios</a></li>'+
-	     		'<li><a>Columna de 3 espacios</a></li>'+
-	     		'<li><a>Columna de 4 espacios</a></li>'+
-	     		'<li><a>Columna de 5 espacios</a></li>'+
-	     		'<li><a>Columna de 6 espacios</a></li>'+
+	     		'<li><a class="arri" id="1_espacio">Columna de 1 espacio</a></li>'+
+	     		'<li><a class="arri" id="2_espacio">Columna de 2 espacios</a></li>'+
+	     		'<li><a class="arri" id="3_espacio">Columna de 3 espacios</a></li>'+
+	     		'<li><a class="arri" id="4_espacio">Columna de 4 espacios</a></li>'+
+	     		'<li><a class="arri" id="5_espacio">Columna de 5 espacios</a></li>'+
+	     		'<li><a class="arri" id="6_espacio">Columna de 6 espacios</a></li>'+
 	    	'</ul>'+
    		'</li>'+
    		'<li class="dropdown-submenu"><a class="menu_a_la_abajo dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar fila abajo</a>'+
 	   		'<ul class="dropdown-menu">'+
-	     		'<li><a>Columna de 1 espacio</a></li>'+
-	     		'<li><a>Columna de 2 espacios</a></li>'+
-	     		'<li><a>Columna de 3 espacios</a></li>'+
-	     		'<li><a>Columna de 4 espacios</a></li>'+
-	     		'<li><a>Columna de 5 espacios</a></li>'+
-	     		'<li><a>Columna de 6 espacios</a></li>'+
+	     		'<li><a class="aba" id="1_espacio">Columna de 1 espacio</a></li>'+
+	     		'<li><a class="aba" id="2_espacio">Columna de 2 espacios</a></li>'+
+	     		'<li><a class="aba" id="3_espacio">Columna de 3 espacios</a></li>'+
+	     		'<li><a class="aba" id="4_espacio">Columna de 4 espacios</a></li>'+
+	     		'<li><a class="aba" id="5_espacio">Columna de 5 espacios</a></li>'+
+	     		'<li><a class="aba" id="6_espacio">Columna de 6 espacios</a></li>'+
 	    	'</ul>'+
    		'</li>'+
-   		'<li><a class=" bg-danger eliminar_columna"> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
+   		'<li class="eliminar_columna"><a class=" bg-danger "> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
   		'</ul>';
   	$('body').append(menu);
   	var $contextMenu = $(".contextmenu");
@@ -143,11 +320,11 @@ $(document).ready(function(){
 	});
 	$("body").on("click",function(){
 		// console.log("caemos?")
-		setTimeout(function(){
+		// setTimeout(function(){
 
-			$('body').find('.clickada').removeClass('clickada');
+		// 	$('body').find('.clickada').removeClass('clickada');
 		
-		},1000)
+		// },1000)
 		$contextMenu.hide();
 	})
 	$contextMenu.on("click", "a", function() {
