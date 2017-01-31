@@ -263,53 +263,72 @@ $(document).ready(function(){
 		return false;
 	});
 
-	var menu = '<ul class="dropdown-menu contextmenu multi-level" aria-labelledby="dLabel" style="position:absolute;display:none">'+
-   		'<li class="dropdown-submenu"><a class="menu_a_la_derecha dropdown-toggle" tabindex="-1"  data-toggle="dropdown"  href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la derecha  </a>'+
-	   		'<ul class="dropdown-menu">'+
-	     		'<li><a class=" der" id="1_espacio">Columna de 1 espacio</a></li>'+
-	     		'<li><a class=" der" id="2_espacio">Columna de 2 espacios</a></li>'+
-	     		'<li><a class=" der" id="3_espacio">Columna de 3 espacios</a></li>'+
-	     		'<li><a class=" der" id="4_espacio">Columna de 4 espacios</a></li>'+
-	     		'<li><a class=" der" id="5_espacio">Columna de 5 espacios</a></li>'+
-	     		'<li><a class=" der" id="6_espacio">Columna de 6 espacios</a></li>'+
-	    	'</ul>'+
-   		'</li>'+
-   		'<li class="dropdown-submenu"><a class="menu_a_la_izquierda dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la izquierda</a>'+
-	   		'<ul class="dropdown-menu">'+
-	     		'<li><a class="iz" id="1_espacio">Columna de 1 espacio</a></li>'+
-	     		'<li><a class="iz" id="2_espacio">Columna de 2 espacios</a></li>'+
-	     		'<li><a class="iz" id="3_espacio">Columna de 3 espacios</a></li>'+
-	     		'<li><a class="iz" id="4_espacio">Columna de 4 espacios</a></li>'+
-	     		'<li><a class="iz" id="5_espacio">Columna de 5 espacios</a></li>'+
-	     		'<li><a class="iz" id="6_espacio">Columna de 6 espacios</a></li>'+
-	    	'</ul>'+
-   		'</li>'+
-   		'<li class="dropdown-submenu"><a class="menu_a_la_arriba dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar fila arriba</a>'+
-	   		'<ul class="dropdown-menu">'+
-	     		'<li><a class="arri" id="1_espacio">Columna de 1 espacio</a></li>'+
-	     		'<li><a class="arri" id="2_espacio">Columna de 2 espacios</a></li>'+
-	     		'<li><a class="arri" id="3_espacio">Columna de 3 espacios</a></li>'+
-	     		'<li><a class="arri" id="4_espacio">Columna de 4 espacios</a></li>'+
-	     		'<li><a class="arri" id="5_espacio">Columna de 5 espacios</a></li>'+
-	     		'<li><a class="arri" id="6_espacio">Columna de 6 espacios</a></li>'+
-	    	'</ul>'+
-   		'</li>'+
-   		'<li class="dropdown-submenu"><a class="menu_a_la_abajo dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar fila abajo</a>'+
-	   		'<ul class="dropdown-menu">'+
-	     		'<li><a class="aba" id="1_espacio">Columna de 1 espacio</a></li>'+
-	     		'<li><a class="aba" id="2_espacio">Columna de 2 espacios</a></li>'+
-	     		'<li><a class="aba" id="3_espacio">Columna de 3 espacios</a></li>'+
-	     		'<li><a class="aba" id="4_espacio">Columna de 4 espacios</a></li>'+
-	     		'<li><a class="aba" id="5_espacio">Columna de 5 espacios</a></li>'+
-	     		'<li><a class="aba" id="6_espacio">Columna de 6 espacios</a></li>'+
-	    	'</ul>'+
-   		'</li>'+
-   		'<li class="eliminar_columna"><a class=" bg-danger "> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
-  		'</ul>';
-  	$('body').append(menu);
-  	var $contextMenu = $(".contextmenu");
+  	var $contextMenu = null;
 
 	$("body").on("contextmenu",".gris",function(e){
+		var menu = '<ul class="dropdown-menu contextmenu multi-level" aria-labelledby="dLabel" style="position:absolute;display:none">'+
+	   		'<li class="dropdown-submenu"><a class="menu_a_la_derecha dropdown-toggle" tabindex="-1"  data-toggle="dropdown"  href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la derecha  </a>'+
+		   		'<ul class="dropdown-menu">'+
+		     		'<li><a class=" der" id="1_espacio">Columna de 1 espacio</a></li>'+
+		     		'<li><a class=" der" id="2_espacio">Columna de 2 espacios</a></li>'+
+		     		'<li><a class=" der" id="3_espacio">Columna de 3 espacios</a></li>'+
+		     		'<li><a class=" der" id="4_espacio">Columna de 4 espacios</a></li>'+
+		     		'<li><a class=" der" id="5_espacio">Columna de 5 espacios</a></li>'+
+		     		'<li><a class=" der" id="6_espacio">Columna de 6 espacios</a></li>'+
+		    	'</ul>'+
+	   		'</li>'+
+	   		'<li class="dropdown-submenu"><a class="menu_a_la_izquierda dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la izquierda</a>'+
+		   		'<ul class="dropdown-menu">'+
+		     		'<li><a class="iz" id="1_espacio">Columna de 1 espacio</a></li>'+
+		     		'<li><a class="iz" id="2_espacio">Columna de 2 espacios</a></li>'+
+		     		'<li><a class="iz" id="3_espacio">Columna de 3 espacios</a></li>'+
+		     		'<li><a class="iz" id="4_espacio">Columna de 4 espacios</a></li>'+
+		     		'<li><a class="iz" id="5_espacio">Columna de 5 espacios</a></li>'+
+		     		'<li><a class="iz" id="6_espacio">Columna de 6 espacios</a></li>'+
+		    	'</ul>'+
+	   		'</li>'+
+	   		'<li class="dropdown-submenu"><a class="menu_a_la_arriba dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar fila arriba</a>'+
+		   		'<ul class="dropdown-menu">'+
+		     		'<li><a class="arri" id="1_espacio">Columna de 1 espacio</a></li>'+
+		     		'<li><a class="arri" id="2_espacio">Columna de 2 espacios</a></li>'+
+		     		'<li><a class="arri" id="3_espacio">Columna de 3 espacios</a></li>'+
+		     		'<li><a class="arri" id="4_espacio">Columna de 4 espacios</a></li>'+
+		     		'<li><a class="arri" id="5_espacio">Columna de 5 espacios</a></li>'+
+		     		'<li><a class="arri" id="6_espacio">Columna de 6 espacios</a></li>'+
+		    	'</ul>'+
+	   		'</li>'+
+	   		'<li class="dropdown-submenu"><a class="menu_a_la_abajo dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar fila abajo</a>'+
+		   		'<ul class="dropdown-menu">'+
+		     		'<li><a class="aba" id="1_espacio">Columna de 1 espacio</a></li>'+
+		     		'<li><a class="aba" id="2_espacio">Columna de 2 espacios</a></li>'+
+		     		'<li><a class="aba" id="3_espacio">Columna de 3 espacios</a></li>'+
+		     		'<li><a class="aba" id="4_espacio">Columna de 4 espacios</a></li>'+
+		     		'<li><a class="aba" id="5_espacio">Columna de 5 espacios</a></li>'+
+		     		'<li><a class="aba" id="6_espacio">Columna de 6 espacios</a></li>'+
+		    	'</ul>'+
+	   		'</li>'+
+	   		'<li class="hacia_derecha"><a>Unir hacia la derecha</a></li>'+
+	   		'<li class="hacia_izquierda"><a>Unir hacia la izquierda</a></li>'+
+	   		'<li class="eliminar_columna"><a class=" bg-danger "> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
+	  		'</ul>';
+	  	$('body').append(menu);
+	  	$contextMenu = $(".contextmenu");
+		$contextMenu.on("click", "a", function() {
+		   $contextMenu.hide();
+		   setTimeout(function(){
+
+		   		$('body').find('.clickada').removeClass('clickada');
+		   	
+		   	},1000)
+		});
+		var before = $(this).prev();
+		var after = $(this).next();
+		if (!before.hasClass("gris")) {
+			$(".hacia_izquierda").remove();
+		}
+		if (!after.hasClass("gris")) {
+			$(".hacia_derecha").remove();
+		}
 		$(this).addClass("clickada");
 		$contextMenu.css({
 		    display: "block",
@@ -318,6 +337,101 @@ $(document).ready(function(){
 	   	});
 		return false;
 	});
+	$("body").on("click",".hacia_derecha",function(){
+		var clickada = $('body').find(".clickada");
+		var esta_columna = parseInt(clickada.attr("class").split(" ")[0].split("-")[2]);
+		var clase = clickada.next().attr("class").split(" ");
+		var la_clase = clase[0];
+		var columna = parseInt(la_clase.split("-")[2]);
+
+		var suma = esta_columna + columna;
+		console.log(clickada.prev())
+		var boton = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>';
+
+		if (clickada.prev().length) {
+			
+			clickada.prev().after("<div class='col-md-"+suma+" gris'></div>")
+			clickada.next().remove();
+			clickada.remove();
+		}else{
+			clickada.next().remove()
+			clickada.parent().prepend("<div class='col-md-"+suma+" gris'></div>")
+			clickada.remove();
+		}
+		$( ".gris" ).droppable({
+		   hoverClass: "hover",
+		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
+		    	$(this).parent().find('.close').remove();
+		    	
+		       	var droppable = $(this);
+		       	var draggable = ui.draggable;
+		       	draggable.prop('style','');
+		       	// Move draggable into droppable
+		       	if ($(ui.draggable).hasClass('plugin_tool')) {
+			       	for (var i = 0; i < herramientas_array.length; i++) {
+			       		if (herramientas_array[i].nombre == $(ui.draggable).attr('nombre')) {
+
+		       				$(droppable).append(herramientas_array[i].html);
+			       		}
+			       	}
+
+		       	}else{
+		       		
+		       	 draggable.appendTo(droppable);
+		       	}
+		    }
+		});
+
+	});
+	$("body").on("click",".hacia_izquierda",function(){
+		var clickada = $('body').find(".clickada");
+		var esta_columna = parseInt(clickada.attr("class").split(" ")[0].split("-")[2]);
+		var clase = clickada.prev().attr("class").split(" ");
+		var la_clase = clase[0];
+		var columna = parseInt(la_clase.split("-")[2]);
+		console.log(esta_columna,columna)
+		var suma = esta_columna + columna;
+		var boton = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>';
+
+		if (clickada.next().length) {
+			
+			clickada.next().before("<div class='col-md-"+suma+" gris'></div>")
+			clickada.prev().remove();
+			clickada.remove();
+		}else{
+			clickada.prev().remove()
+			clickada.parent().prepend("<div class='col-md-"+suma+" gris'></div>")
+			clickada.remove();
+		}
+		$( ".gris" ).droppable({
+		   hoverClass: "hover",
+		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
+		    	$(this).parent().find('.close').remove();
+		    	
+		       	var droppable = $(this);
+		       	var draggable = ui.draggable;
+		       	draggable.prop('style','');
+		       	// Move draggable into droppable
+		       	if ($(ui.draggable).hasClass('plugin_tool')) {
+			       	for (var i = 0; i < herramientas_array.length; i++) {
+			       		if (herramientas_array[i].nombre == $(ui.draggable).attr('nombre')) {
+
+		       				$(droppable).append(herramientas_array[i].html);
+			       		}
+			       	}
+
+		       	}else{
+		       		
+		       	 draggable.appendTo(droppable);
+		       	}
+		    }
+		});
+
+	});
 	$("body").on("click",function(){
 		// console.log("caemos?")
 		// setTimeout(function(){
@@ -325,16 +439,12 @@ $(document).ready(function(){
 		// 	$('body').find('.clickada').removeClass('clickada');
 		
 		// },1000)
-		$contextMenu.hide();
-	})
-	$contextMenu.on("click", "a", function() {
-	   $contextMenu.hide();
-	   setTimeout(function(){
+		if ($contextMenu) {
 
-	   		$('body').find('.clickada').removeClass('clickada');
-	   	
-	   	},1000)
-	});
+			$contextMenu.hide();
+		}
+	})
+
 
 	 $('.dropdown-submenu a.test').on("click", function(e){
 	    $(this).next('ul').toggle();
