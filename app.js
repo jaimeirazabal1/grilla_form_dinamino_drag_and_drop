@@ -553,12 +553,19 @@ $(document).ready(function(){
 		    	}
 		    tools_array +='</ul>';
 		  tools_array +='</li>';
+		  tools_array += '<li role="presentation" class="dropdown">'+'<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar Elemento<span class="caret"></span></a>'+
+			  '<ul class="dropdown-menu">'+
+			  	'<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="hipervinculo">Agregar Hipervinculo</a></li>'+
+			  	'<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="imagen">Agregar Imagen</a></li>'+
+			  '</ul>'+
+		  '</li>';
+
 		tools_array +='</ul>';
 
 	controles = controles+tools_array;
 	
  
-
+	
 	/*codigo para los tabs*/
 	$(".tabs-container").find("a").append("&nbsp;&nbsp;<button class='btn btn-success btn-xs btn_agregar_tabs'>+</button>");
 	$("body").on("click",".btn_agregar_tabs",function(){
@@ -574,7 +581,9 @@ $(document).ready(function(){
 		$('.plugin_tool').draggable({
 			helper: "clone"
 		});		
-
+		$('.elemento_html').draggable({
+			helper: "clone"
+		});		
 		$("#"+tabs_editables).droppable({
 		    activeClass: "ui-state-highlight",
 		    drop: function (event, ui) {
@@ -612,7 +621,10 @@ $(document).ready(function(){
 	$("#tool_bar_"+tabs_editables).prepend(controles);
 
 	$('.plugin_tool').draggable();
-
+	$('.elemento_html').draggable();
+	$("body").on('.elemento_html',function(){
+		return false;
+	})
 	$('body').on('click',".una_fila_una_columna",function(){
 		id_tab = $(this).parent().parent().parent().parent().parent().attr("id").split("_")[2];
 		equis = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>'
@@ -637,6 +649,18 @@ $(document).ready(function(){
 			       		}
 			       	}
 
+		       	}else if($(ui.draggable).hasClass('elemento_html')){
+		       		if ($(ui.draggable).attr("id") == "hipervinculo") {
+		       			var texto = prompt("Ingresa el texto del hipervinculo");
+		       			var direccion = prompt("Ingresa la dirección de enlace (link)");
+		       			$(droppable).append("<a target='_blank' href='"+direccion+"'>"+texto+"</a>");
+		       		}
+		       		if ($(ui.draggable).attr("id") == "imagen") {
+		       			var direccion = prompt("Ingresa la dirección de enlace de la imagen");
+		       			var ancho = prompt("Ingresa el ancho de la imagen en Pixeles");
+		       			var alto = prompt("Ingresa el alto de la imagen en Pixeles");
+		       			$(droppable).append("<img src='"+direccion+"' width='"+ancho+"' height='"+alto+"'>");
+		       		}
 		       	}else{
 		       		
 		       	 draggable.appendTo(droppable);
