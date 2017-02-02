@@ -249,6 +249,42 @@ $(document).ready(function(){
 		// $("").inserBefore(clickada)
 		return false;
 	});	
+	$("body").on("click",".separar_en",function(){
+		var clickada = $('body').find(".clickada");
+		var cantidad = $(this).attr("id").split("_")[0];
+		var anterior = '';
+		var posterior = '';
+		var padre = '';
+		//var boton = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>';
+		if (clickada.prev().length != 0) {
+			anterior = clickada.prev();
+		}else if(clickada.next().length != 0 && clickada.prev().length == 0 && clickada.next().hasClass("gris")){
+			posterior = clickada.next();
+		}else{
+			padre = clickada.parent();
+		}
+		divs = '';
+		cantidad_columnas_actual = clickada.attr("class").split(" ")[0].split("-")[2];
+		tamano_columna = Math.ceil(cantidad_columnas_actual/cantidad)
+		console.log(tamano_columna)
+		console.log(cantidad_columnas_actual,cantidad)
+		for (var i = 0 ; i < cantidad; i++) {
+			divs+='<div class="col-md-'+tamano_columna+' gris"></div>';
+		}
+		if (anterior != '') {
+			anterior.after(divs);
+			clickada.remove();
+		}
+		if (posterior != '') {
+			posterior.before(divs);
+			clickada.remove();
+		}
+		if (padre != '') {
+			clickada.before(divs);
+			clickada.remove();
+		}
+
+	});
 	$("body").on("click",".eliminar_columna",function(){
 		// alert("??")
 		var clickada = $('body').find(".clickada");
@@ -266,6 +302,7 @@ $(document).ready(function(){
   	var $contextMenu = null;
 
 	$("body").on("contextmenu",".gris",function(e){
+		$("body").find(".clickada").removeClass("clickada");
 		var menu = '<ul class="dropdown-menu contextmenu multi-level" aria-labelledby="dLabel" style="position:absolute;display:none">'+
 	   		'<li class="dropdown-submenu"><a class="menu_a_la_derecha dropdown-toggle" tabindex="-1"  data-toggle="dropdown"  href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar columna a la derecha  </a>'+
 		   		'<ul class="dropdown-menu">'+
@@ -309,6 +346,15 @@ $(document).ready(function(){
 	   		'</li>'+
 	   		'<li class="hacia_derecha"><a>Unir hacia la derecha</a></li>'+
 	   		'<li class="hacia_izquierda"><a>Unir hacia la izquierda</a></li>'+
+	   		'<li class="dropdown-submenu"><a class="separar" dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Separar en</a>'+
+	   			'<ul class="dropdown-menu">'+
+		     		'<li><a class="separar_en" id="2_espacio">Columna de 2 espacios</a></li>'+
+		     		'<li><a class="separar_en" id="3_espacio">Columna de 3 espacios</a></li>'+
+		     		'<li><a class="separar_en" id="4_espacio">Columna de 4 espacios</a></li>'+
+		     		'<li><a class="separar_en" id="5_espacio">Columna de 5 espacios</a></li>'+
+		     		'<li><a class="separar_en" id="6_espacio">Columna de 6 espacios</a></li>'+
+		    	'</ul>'+
+	   		'</li>'+
 	   		'<li class="eliminar_columna"><a class=" bg-danger "> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
 	  		'</ul>';
 	  	$('body').append(menu);
@@ -321,6 +367,13 @@ $(document).ready(function(){
 		   	
 		   	},1000)
 		});
+		$("body").click(function(){
+			setTimeout(function(){
+
+		   		$('body').find('.clickada').removeClass('clickada');
+		   	
+		   	},1000)
+		})
 		var before = $(this).prev();
 		var after = $(this).next();
 		if (!before.hasClass("gris")) {
