@@ -300,7 +300,40 @@ $(document).ready(function(){
 	});
 
   	var $contextMenu = null;
+  	$("body").on("contextmenu",".tabsita",function(e){
+  		e.preventDefault();
+		var menu = '<ul class="dropdown-menu contextmenu multi-level" aria-labelledby="dLabel" style="position:absolute;display:none">'+
 
+	   		'<li class="tab_a_la_derecha"><a href="#" onclick="return false;">Agregar Tab a la derecha</a></li>'+
+	   		'<li class="tab_a_la_izquierda"><a href="#" onclick="return false;">Agregar Tab a la izquierda</a></li>'+
+	  		'</ul>';
+	  	$('body').append(menu);
+	  	$contextMenu = $(".contextmenu");
+		$contextMenu.on("click", "a", function() {
+		   $contextMenu.hide();
+		   setTimeout(function(){
+
+		   		$('body').find('.clickada').removeClass('clickada');
+		   	
+		   	},1000)
+		});
+		$("body").click(function(){
+			setTimeout(function(){
+
+		   		$('body').find('.clickada').removeClass('clickada');
+		   	
+		   	},1000)
+		})
+		
+		$(this).parent().addClass("clickada");
+
+		$contextMenu.css({
+		    display: "block",
+		    left: e.pageX,
+		    top: e.pageY
+	   	});
+  		return false;
+  	});
 	$("body").on("contextmenu",".gris",function(e){
 		$("body").find(".clickada").removeClass("clickada");
 		var menu = '<ul class="dropdown-menu contextmenu multi-level" aria-labelledby="dLabel" style="position:absolute;display:none">'+
@@ -595,7 +628,62 @@ $(document).ready(function(){
 		    }
 		});
 	});
+	$("body").on("click",".tab_a_la_izquierda",function(){
+		tabs_editables++;
+		var clickada = $("body").find(".clickada");
+		boton_cerrar = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>';
+		$(".tabs-container ul").eq(0).find("li.active").removeClass('active');
+		clickada.before("<li class='active'><a data-toggle='tab' id='"+tabs_editables+"' class='tab_editable_"+tabs_editables+" tabsita' contenteditable='true'>Escribe el Nombre aqui</a>"+boton_cerrar+"</li>");
+		$(".tab-content").append("<div id='' class='tab-pane content_tab_"+tabs_editables+"'><div class='panel-body'><h1 contenteditable='true'>Contenido del tab "+tabs_editables+"</h1></div></div>")
+		tool_bar_dinamic = '<div id="tool_bar_'+tabs_editables+'" class="tool_bar"></div>';
+		$(".content_tab_"+tabs_editables+" .panel-body").append(tool_bar_dinamic);
+		$('#tool_bar_'+tabs_editables).append(controles);
 
+		$('.plugin_tool').draggable({
+			helper: "clone"
+		});		
+		$('.elemento_html').draggable({
+			helper: "clone"
+		});		
+		$("#"+tabs_editables).droppable({
+		    activeClass: "ui-state-highlight",
+		    drop: function (event, ui) {
+		        // console.log();
+		        $(ui.draggable).remove()
+		        $(".content_tab_"+$(this).attr('class').split(" ")[0].split("_")[2]+" .panel-body").append('<div class="control-group" data-drop="true">'+ui.draggable.html()+'</div>')
+		        //$(".tabs-container").tabs("refresh");
+		        $('.control-group').draggable();
+		    }
+		});
+	});
+	$("body").on("click",".tab_a_la_derecha",function(){
+		tabs_editables++;
+		var clickada = $("body").find(".clickada");
+		boton_cerrar = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>';
+		$(".tabs-container ul").eq(0).find("li.active").removeClass('active');
+		clickada.after("<li class='active'><a data-toggle='tab' id='"+tabs_editables+"' class='tab_editable_"+tabs_editables+" tabsita' contenteditable='true'>Escribe el Nombre aqui</a>"+boton_cerrar+"</li>");
+		$(".tab-content").append("<div id='' class='tab-pane content_tab_"+tabs_editables+"'><div class='panel-body'><h1 contenteditable='true'>Contenido del tab "+tabs_editables+"</h1></div></div>")
+		tool_bar_dinamic = '<div id="tool_bar_'+tabs_editables+'" class="tool_bar"></div>';
+		$(".content_tab_"+tabs_editables+" .panel-body").append(tool_bar_dinamic);
+		$('#tool_bar_'+tabs_editables).append(controles);
+
+		$('.plugin_tool').draggable({
+			helper: "clone"
+		});		
+		$('.elemento_html').draggable({
+			helper: "clone"
+		});		
+		$("#"+tabs_editables).droppable({
+		    activeClass: "ui-state-highlight",
+		    drop: function (event, ui) {
+		        // console.log();
+		        $(ui.draggable).remove()
+		        $(".content_tab_"+$(this).attr('class').split(" ")[0].split("_")[2]+" .panel-body").append('<div class="control-group" data-drop="true">'+ui.draggable.html()+'</div>')
+		        //$(".tabs-container").tabs("refresh");
+		        $('.control-group').draggable();
+		    }
+		});
+	});
 	$("body").on('keyup', '.tabsita', function() {
 		console.log($(this).attr("id"))
 		// if (!$(this).attr("id")) {
