@@ -590,6 +590,7 @@ $(document).ready(function(){
 			  '<ul class="dropdown-menu">'+
 			  	'<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="hipervinculo">Agregar Hipervinculo</a></li>'+
 			  	'<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="imagen">Agregar Imagen</a></li>'+
+			  	'<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="separador">Agregar Separador</a></li>'+
 			  '</ul>'+
 		  '</li>';
 
@@ -748,6 +749,10 @@ $(document).ready(function(){
 		       			var ancho = prompt("Ingresa el ancho de la imagen en Pixeles");
 		       			var alto = prompt("Ingresa el alto de la imagen en Pixeles");
 		       			$(droppable).append("<img src='"+direccion+"' width='"+ancho+"' height='"+alto+"'>");
+		       		}
+		       		if ($(ui.draggable).attr("id") == "separador") {
+		       			// alert("?")
+		       			$(droppable).append("<div class='no_se_ve'></hr> <button>x</button></div>");
 		       		}
 		       	}else{
 		       		

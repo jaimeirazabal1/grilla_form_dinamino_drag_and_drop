@@ -13,7 +13,9 @@
 	
 	border: .2px dotted black;
 }
-
+hr{
+    background-color: black;
+}
 .draggable_grid{
 	border: .05em solid red;
 }
