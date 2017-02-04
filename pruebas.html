@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Pruebas</title>
+	<link rel="stylesheet" href="libs/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+	<style type="text/css">
+		#lienzo{
+			width: 500px;
+			border:1px solid black;
+			padding:2px;
+		}
+		.draggable{
+			width: 60px;
+			background-color: black;
+			border: 1px solid black;
+			height:60px;
+		}
+	</style>
+	<script type="text/javascript" src="libs/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="libs/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".draggable").draggable({
+				helper:"clone"
+			});
+			// $("#lienzo").droppable();
+		});
+	</script>
+</head>
+<body>
+	<div id="lienzo">
+		<div class="draggable"></div>
+	</div>
+</body>
+</html>
