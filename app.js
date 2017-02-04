@@ -18,6 +18,7 @@ $(function(){
     });
 });
 var tabs_editables = 0;
+var acordeones = 0;
 var controlGroup = '';
 var herramientas_array=[
     {
@@ -518,6 +519,12 @@ $(document).ready(function(){
 	   				'<li class="separador_despues"><a href="">Despues</a></li>'+
 	   			'</ul>'+
 	   		'</li>'+
+	   		'<li class="dropdown-submenu"><a class="" dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Insertar acordeón</a>'+
+	   			'<ul class="dropdown-menu">'+
+	   				'<li class="acordeon_antes"><a href="">Antes</a></li>'+
+	   				'<li class="acordeon_despues"><a href="">Despues</a></li>'+
+	   			'</ul>'+
+	   		'</li>'+
 	   		'<li class="eliminar_columna"><a class="bg-danger"> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
 	  		'</ul>';
 	  	$('body').append(menu);
@@ -551,6 +558,106 @@ $(document).ready(function(){
 		    left: e.pageX,
 		    top: e.pageY
 	   	});
+		return false;
+	});
+	$("body").on("click",".acordeon_antes",function(){
+		acordeones++;
+		var clickada = $("body").find(".clickada");
+		var acordeon = '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">'+
+	  '<div class="panel panel-default">'+
+	    '<div class="panel-heading" role="tab" id="headingOne'+acordeones+'">'+
+	      '<h4 class="panel-title">'+
+	        '<a role="button" data-toggle="collapse" contenteditable="true" data-parent="#accordion" href="#collapseOne'+acordeones+'1" aria-expanded="true" aria-controls="collapseOne'+acordeones+'1">'+
+	          'Collapsible Group Item #1'+
+	        '</a>'+
+	      '</h4>'+
+	    '</div>'+
+	    '<div id="collapseOne'+acordeones+'1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne'+acordeones+'">'+
+	      '<div class="panel-body" contenteditable="true">'+
+	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '</div>'+
+	    '</div>'+
+	  '</div>'+
+	  '<div class="panel panel-default">'+
+	    '<div class="panel-heading" role="tab" id="headingTwo'+acordeones+'1">'+
+	      '<h4 class="panel-title">'+
+	        '<a class="collapsed" role="button" contenteditable="true" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo'+acordeones+'2" aria-expanded="false" aria-controls="collapseTwo'+acordeones+'2">'+
+	          'Collapsible Group Item #2'+
+	        '</a>'+
+	      '</h4>'+
+	    '</div>'+
+	    '<div id="collapseTwo'+acordeones+'2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo'+acordeones+'1">'+
+	      '<div class="panel-body" contenteditable="true">'+
+	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '</div>'+
+	    '</div>'+
+	  '</div>'+
+	  '<div class="panel panel-default">'+
+	    '<div class="panel-heading" role="tab" id="headingThree'+acordeones+'2">'+
+	      '<h4 class="panel-title">'+
+	        '<a class="collapsed" role="button" contenteditable="true" data-toggle="collapse" data-parent="#accordion" href="#collapseThree'+acordeones+'3" aria-expanded="false" aria-controls="collapseThree'+acordeones+'3">'+
+	          'Collapsible Group Item #3'+
+	        '</a>'+
+	      '</h4>'+
+	    '</div>'+
+	    '<div id="collapseThree'+acordeones+'3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree'+acordeones+'2">'+
+	      '<div class="panel-body" contenteditable="true">'+
+	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '</div>'+
+	    '</div>'+
+	  '</div>'+'<a href="" onClick="$(this).parent().remove();return false;"> X </a>'+
+	'</div>';
+		clickada.parent().before(acordeon);
+		return false;
+	});
+	$("body").on("click",".acordeon_despues",function(){
+		acordeones++;
+		var clickada = $("body").find(".clickada");
+		var acordeon = '<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">'+
+	  '<div class="panel panel-default">'+
+	    '<div class="panel-heading" role="tab" id="headingOne'+acordeones+'">'+
+	      '<h4 class="panel-title">'+
+	        '<a role="button" data-toggle="collapse" contenteditable="true" data-parent="#accordion" href="#collapseOne'+acordeones+'1" aria-expanded="true" aria-controls="collapseOne'+acordeones+'1">'+
+	          'Collapsible Group Item #1'+
+	        '</a>'+
+	      '</h4>'+
+	    '</div>'+
+	    '<div id="collapseOne'+acordeones+'1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne'+acordeones+'">'+
+	      '<div class="panel-body" contenteditable="true">'+
+	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '</div>'+
+	    '</div>'+
+	  '</div>'+
+	  '<div class="panel panel-default">'+
+	    '<div class="panel-heading" role="tab" id="headingTwo'+acordeones+'1">'+
+	      '<h4 class="panel-title">'+
+	        '<a class="collapsed" role="button" contenteditable="true" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo'+acordeones+'2" aria-expanded="false" aria-controls="collapseTwo'+acordeones+'2">'+
+	          'Collapsible Group Item #2'+
+	        '</a>'+
+	      '</h4>'+
+	    '</div>'+
+	    '<div id="collapseTwo'+acordeones+'2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo'+acordeones+'1">'+
+	      '<div class="panel-body" contenteditable="true">'+
+	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '</div>'+
+	    '</div>'+
+	  '</div>'+
+	  '<div class="panel panel-default">'+
+	    '<div class="panel-heading" role="tab" id="headingThree'+acordeones+'2">'+
+	      '<h4 class="panel-title">'+
+	        '<a class="collapsed" role="button" contenteditable="true" data-toggle="collapse" data-parent="#accordion" href="#collapseThree'+acordeones+'3" aria-expanded="false" aria-controls="collapseThree'+acordeones+'3">'+
+	          'Collapsible Group Item #3'+
+	        '</a>'+
+	      '</h4>'+
+	    '</div>'+
+	    '<div id="collapseThree'+acordeones+'3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree'+acordeones+'2">'+
+	      '<div class="panel-body" contenteditable="true">'+
+	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '</div>'+
+	    '</div>'+
+	  '</div>'+'<a href="" onClick="$(this).parent().remove();return false;"> X </a>'+
+	'</div>';
+		clickada.parent().after(acordeon);
 		return false;
 	});
 	$("body").on("click",".separador_antes",function(){
