@@ -564,18 +564,141 @@ $(document).ready(function(){
 	$('body').on('click','.insertar_control',function(){
 		var clickada = $("body").find(".clickada");
 		$('#myModalCambioInput').modal('show');
+		$('#myModalCambioInput').on('hidden.bs.modal', function () {
+			$("#guardar_cambio_input").removeClass("creando_control");
+		})
 		$("#myModalLabel").text('Crear un Control');
+		$("#guardar_cambio_input").addClass("creando_control");
 		inputs = "<p>"+
 			"<div class='form-group'>"+
 				"<label>Propiedades</label>"+
-				"<div class='form-control'>"+
-					"<input type='text' class='form-control' id='nombre_nuevo_control'>"+
+			"</div>"+
+			"<div class='row'>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Nombre</label>"+
+						"<input type='text' class='form-control' id='nombre_nuevo_control'>"+
+					"</div>"+	
 				"</div>"+
-			"</div>"+	
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Color de texto</label>"+
+						"<select class='form-control' id='color_nuevo_control'>"+
+							"<option value=''>Seleccione</option>"+
+							"<option value='black'>Negro</option>"+
+							"<option value='red'>Rojo</option>"+
+							"<option value='white'>Blanco</option>"+
+							"<option value='green'>Verde</option>"+
+							"<option value='orange'>Naranja</option>"+
+							"<option value='purple'>Morado</option>"+
+						"</select>"+
+					"</div>"+	
+				"</div>"+
+			"</div>"+
+			"<div class='row'>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>"+
+						"<input type='checkbox' id='solo_lectura_nuevo_control'>Solo lectura</label>"+
+					"</div>"+	
+				"</div>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Color de Fondo</label>"+
+						"<select class='form-control' id='color_fondo_nuevo_control'>"+
+							"<option value=''>Seleccione</option>"+
+							"<option value='black'>Negro</option>"+
+							"<option value='red'>Rojo</option>"+
+							"<option value='white'>Blanco</option>"+
+							"<option value='green'>Verde</option>"+
+							"<option value='orange'>Naranja</option>"+
+							"<option value='purple'>Morado</option>"+
+						"</select>"+
+					"</div>"+	
+				"</div>"+
+			"</div>"+
+			"<div class='row'>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Fuente</label>"+
+						"<select name='' id='fuente_nuevo_control' class='form-control'>"+
+							"<option>Seleccione</option>"+
+							"<option value='times new roman'>Times New Roman</option>"+
+							"<option value='garamond'>Garamond</option>"+
+							"<option value='georgia'>georgia</option>"+
+							"<option value='trebuchet'>Trebuchet</option>"+
+							"<option value='arial'>Arial</option>"+
+							"<option value='verdana'>Verdana</option>"+
+							"<option value='courier'>Courier</option>"+
+							"<option value='courier new'>Courier New</option>"+
+							"<option value='andele mono'>Andele Mono</option>"+
+						"</select>"+
+					"</div>"+	
+				"</div>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Color de Borde</label>"+
+						"<select class='form-control' id='color_borde_nuevo_control'>"+
+							"<option value=''>Seleccione</option>"+
+							"<option value='black'>Negro</option>"+
+							"<option value='red'>Rojo</option>"+
+							"<option value='white'>Blanco</option>"+
+							"<option value='green'>Verde</option>"+
+							"<option value='orange'>Naranja</option>"+
+							"<option value='purple'>Morado</option>"+
+						"</select>"+
+					"</div>"+	
+				"</div>"+
+			"</div>"+
+			"<div class='row'>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Tipo de Control</label>"+
+						"<select name='' id='tipo_nuevo_control' class='form-control'>"+
+							"<option>Seleccione</option>"+
+							"<option value='text'>Texto</option>"+
+							"<option value='textarea'>Texto largo</option>"+
+							"<option value='select'>Combo</option>"+
+							"<option value='date'>Fecha</option>"+
+							"<option value='email'>Email</option>"+
+							"<option value='number'>Numero</option>"+
+							"<option value='checkbox'>Checkbox</option>"+
+						"</select>"+
+					"</div>"+	
+				"</div>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Ancho del Borde (PX)</label>"+
+						"<input type='text' class='form-control' id='ancho_borde_nuevo_control'>"+
+					"</div>"+	
+				"</div>"+
+			"</div>"+
+			"<div class='row'>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Tamaño de texto interno</label>"+
+						"<input type='text' name='' id='tamano_nuevo_control' class='form-control'>"+
+					"</div>"+	
+				"</div>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Propiedades (Separar con Enter)</label>"+
+						"<textarea name='' id='propiedades_nuevo_control' class='form-control'>"+
+
+						"</textarea>"+
+					"</div>"+	
+				"</div>"+
+			"</div>"+
+			"<div class='row'>"+
+				"<div class='col-md-12 codigo_del_control'>"+
+
+				"</div>"+
+			"</div>"+
 		"</p>";
 		$("#body_cambio_input").html(inputs);
 		return false;
 	});
+
 	$("body").on("click",".acordeon_antes",function(){
 		acordeones++;
 		var clickada = $("body").find(".clickada");
@@ -1920,6 +2043,77 @@ $("body").on("click",".separador_despues",function(){
 	});
 
 	$("body").on("click","#guardar_cambio_input",function(){
+
+		if ($(this).hasClass("creando_control")) {
+			var label = $("#nombre_nuevo_control").val();
+			var solo_lectura = $("#solo_lectura_nuevo_control").is(":checked");
+			var fuente = $("#fuente_nuevo_control").val();
+			var tipo = $("#tipo_nuevo_control").val();
+			var tamano = $("#tamano_nuevo_control").val();
+			var color_text = $("#color_nuevo_control").val();
+			var color_fondo = $("#color_fondo_nuevo_control").val();
+			var color_borde = $("#color_borde_nuevo_control").val();
+			var ancho_borde = $("#ancho_borde_nuevo_control").val();
+			var propiedades = $("#propiedades_nuevo_control").val();
+
+			if (solo_lectura) {
+				readonly = "readonly='readonly'";
+			}else{
+				readonly = "";
+			}
+			if (tamano) {
+				tamano = 'maxlength="'+tamano+'"';
+			}else{
+				tamano = "";
+			}
+			if (!color_text) {
+				color_text='';
+			}
+			if (!ancho_borde) {
+				ancho_borde='';
+			}
+			if (!color_borde) {
+				color_borde='';
+			}
+			if (!color_fondo) {
+				color_fondo='';
+			}
+			style = "style='color:"+color_text+";border:"+ancho_borde+"px solid "+color_borde+";background-color:"+color_fondo+"'";
+
+			switch(tipo){
+				case "text":
+				label_ = label.split(' ').join('_');
+				input = '<input class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'" type="text">'
+				break;
+				case "textarea":
+				label_ = label.split(' ').join('_');
+				input = '<textarea class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'"></textarea>';
+				break;
+				case "email":
+				label_ = label.split(' ').join('_');
+				input = '<input class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'" type="email">'
+				break;
+				case "number":
+				label_ = label.split(' ').join('_');
+				input = '<input class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'" type="number">'
+				break;
+			}
+
+			var control = '<div class="control-group" style="position: relative;">'+
+	            '<label class="control-label">'+label+'</label>'+
+	            '<div class="controls">'+
+	                input+
+	                
+	            '</div>'+
+	        '</div>';
+
+	        $(".panel-body .row .col-md-12").eq(0).prepend(control);
+
+	        $('.control-group').draggable();
+			console.log("se esta creando un control");
+			$(this).removeClass("creando_control");
+			return false;
+		}
 
 		var propiedades='';
 		var tipo='';
