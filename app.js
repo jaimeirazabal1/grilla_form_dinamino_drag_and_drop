@@ -664,7 +664,10 @@ $(document).ready(function(){
 							"<option value='number'>Numero</option>"+
 							"<option value='checkbox'>Checkbox</option>"+
 						"</select>"+
-					"</div>"+	
+					"</div>"+
+					"<div id='opciones_div' class='hide'>"+
+						"<input type='text' class='form-control' id='opciones' placeholder='Ej: opcion1, opcion2, etc...'>"
+					"</div>"+
 				"</div>"+
 				"<div class='col-md-6'>"+
 					"<div class='form-group'>"+
@@ -698,7 +701,13 @@ $(document).ready(function(){
 		$("#body_cambio_input").html(inputs);
 		return false;
 	});
-
+	$("body").on("change","#tipo_nuevo_control",function(){
+		if ($(this).val() == 'select') {
+			$("#opciones_div").removeClass("hide");
+		}else{
+			$("#opciones_div").addClass("hide");
+		}
+	});
 	$("body").on("click",".acordeon_antes",function(){
 		acordeones++;
 		var clickada = $("body").find(".clickada");
@@ -2097,17 +2106,65 @@ $("body").on("click",".separador_despues",function(){
 				label_ = label.split(' ').join('_');
 				input = '<input class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'" type="number">'
 				break;
+				case "checkbox":
+				label_ = label.split(' ').join('_');
+				input = '<label><input type="checkbox" name="'+label_+'">&nbsp;'+label+'</label>';
+				break;
+				case "select":
+				if ($("#opciones").val()) {
+					var opciones = $("#opciones").val().split(',');
+					var html_options = '<option>Seleccione</option>';
+					for (var i = 0; i < opciones.length; i++) {
+						html_options+="<option value='"+$.trim(opciones[i])+"'>"+$.trim(opciones[i])+"</option>";
+					}
+				}else{
+					alert("Es necesario escribir las opciones del combo!");
+					$('#opciones').focus();
+					return;
+				}
+				label_ = label.split(' ').join('_');
+				input = '<select class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'">'+html_options+'</select>';
+				break;
+				case "date":
+				label_ = label.split(' ').join('_');
+				nuevo_input = "<input type='text' class='form-control col-md-12' readonly='readonly' name='"+label_+"' id='"+label_+"'>";
+				html_date = "<label class='control-label'>"+label_+"</label><div class='controls'><div class='input-group date' id='datetimepicker1'>"+nuevo_input+"<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span></div></div>";
+		          
+				break;
+			}
+			if (tipo == 'date') {
+				var control = '<div class="control-group" style="position: relative;">'+
+		            html_date+
+		        '</div>';
+			}else{
+				if (tipo == 'checkbox') {
+					var control = '<div class="control-group" style="position: relative;">'+
+			            input+
+			        '</div>';
+
+				}else{
+					var control = '<div class="control-group" style="position: relative;">'+
+			            '<label class="control-label">'+label+'</label>'+
+			            '<div class="controls">'+
+			                input+
+			                
+			            '</div>'+
+			        '</div>';	
+				}
+				
 			}
 
-			var control = '<div class="control-group" style="position: relative;">'+
-	            '<label class="control-label">'+label+'</label>'+
-	            '<div class="controls">'+
-	                input+
-	                
-	            '</div>'+
-	        '</div>';
-
 	        $(".panel-body .row .col-md-12").eq(0).prepend(control);
+	        if (tipo == 'date') {
+	        	$('.date').datepicker({
+		                todayBtn: "linked",
+		                keyboardNavigation: false,
+		                forceParse: false,
+		                calendarWeeks: true,
+		                autoclose: true,
+		                format: "dd-mm-yyyy"
+		            });
+	        }
 
 	        $('.control-group').draggable();
 			console.log("se esta creando un control");
