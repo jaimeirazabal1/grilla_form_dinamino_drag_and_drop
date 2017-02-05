@@ -525,6 +525,7 @@ $(document).ready(function(){
 	   				'<li class="acordeon_despues"><a href="">Despues</a></li>'+
 	   			'</ul>'+
 	   		'</li>'+
+	   		'<li class="insertar_control"><a > Insertar Control  </a></li>'+
 	   		'<li class="eliminar_columna"><a class="bg-danger"> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
 	  		'</ul>';
 	  	$('body').append(menu);
@@ -558,6 +559,21 @@ $(document).ready(function(){
 		    left: e.pageX,
 		    top: e.pageY
 	   	});
+		return false;
+	});
+	$('body').on('click','.insertar_control',function(){
+		var clickada = $("body").find(".clickada");
+		$('#myModalCambioInput').modal('show');
+		$("#myModalLabel").text('Crear un Control');
+		inputs = "<p>"+
+			"<div class='form-group'>"+
+				"<label>Propiedades</label>"+
+				"<div class='form-control'>"+
+					"<input type='text' class='form-control' id='nombre_nuevo_control'>"+
+				"</div>"+
+			"</div>"+	
+		"</p>";
+		$("#body_cambio_input").html(inputs);
 		return false;
 	});
 	$("body").on("click",".acordeon_antes",function(){
