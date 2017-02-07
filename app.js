@@ -17,9 +17,12 @@ $(function(){
         root.find('.sub-menu:visible').hide();
     });
 });
+
 var tabs_editables = 0;
 var acordeones = 0;
 var controlGroup = '';
+var tinis = 0;
+var tiny = '';
 var herramientas_array=[
     {
     "nombre":"Datepicker", 
@@ -74,6 +77,11 @@ function buscarCategoria(categoria,plugins_categories){
 	return false;
 }
 $(document).ready(function(){
+	$.getScript("//cloud.tinymce.com/stable/tinymce.min.js", function() {
+    	console.log("tinymce cargado con exito");
+	    // here you can use anything you defined in the loaded script
+	});
+
 	$("body").on("click",".der",function(){
 		var clickada = $('body').find(".clickada");
 		var cantidad = $(this).attr("id").split("_");
@@ -513,19 +521,21 @@ $(document).ready(function(){
 		     		'<li><a class="separar_en" id="6_espacio">Columna de 6 espacios</a></li>'+
 		    	'</ul>'+
 	   		'</li>'+
-	   		'<li class="dropdown-submenu"><a class="" dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Insertar Separador</a>'+
+	   		'<li class="dropdown-submenu"><a class=" dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Insertar Separador</a>'+
 	   			'<ul class="dropdown-menu">'+
 	   				'<li class="separador_antes"><a href="">Antes</a></li>'+
 	   				'<li class="separador_despues"><a href="">Despues</a></li>'+
 	   			'</ul>'+
 	   		'</li>'+
-	   		'<li class="dropdown-submenu"><a class="" dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Insertar acordeón</a>'+
+	   		'<li class="dropdown-submenu"><a class=" dropdown-toggle" tabindex="-1"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Insertar acordeón</a>'+
 	   			'<ul class="dropdown-menu">'+
 	   				'<li class="acordeon_antes"><a href="">Antes</a></li>'+
 	   				'<li class="acordeon_despues"><a href="">Despues</a></li>'+
 	   			'</ul>'+
 	   		'</li>'+
 	   		'<li class="insertar_control"><a > Insertar Control  </a></li>'+
+	   		'<li class="insertar_texto"><a > Insertar Texto  </a></li>'+
+	   		
 	   		'<li class="eliminar_columna"><a class="bg-danger"> <span class="glyphicon glyphicon-remove"></span> Eliminar  </a></li>'+
 	  		'</ul>';
 	  	$('body').append(menu);
@@ -561,6 +571,27 @@ $(document).ready(function(){
 	   	});
 		return false;
 	});
+	$("body").on("click",".insertar_texto",function(){
+		var clickada = $("body").find(".clickada");
+		tinis++;
+		clickada.append("<textarea class='tinymce' id='tiny_"+tinis+"'></textarea><a class='cerrar_tiny'>X</a>")
+		tiny = tinymce.init({
+            selector: ".tinymce",
+			plugins: " advcode advlist autolink link image lists charmap print preview textcolor",
+			toolbar: "forecolor backcolor undo redo | styleselect | bold italic | link image alignleft aligncenter alignright"
+
+        });
+        setTimeout(function(){
+        	$(".mce-notification").remove();
+        },500)
+        
+	})
+	$("body").on("click",".cerrar_tiny",function(e){
+		tinymce.remove(".tinymce");
+		$(this).parent().html($(".tinymce").val());
+		//console.log($(".tinymce").val())
+		return false;
+	})
 	$('body').on('click','.insertar_control',function(){
 		var clickada = $("body").find(".clickada");
 		$('#myModalCambioInput').modal('show');
