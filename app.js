@@ -433,14 +433,39 @@ $(document).ready(function(){
 	});
 
   	var $contextMenu = null;
+  	$("body").on("click",".tab_mover_derecha",function(){
+  		var clickada = $("body").find(".clickada");
+  		var copy = clickada.html();
+  		clickada.next().after("<li>"+copy+"</li>");
+  		clickada.remove();
+
+  	})
+  	$("body").on("click",".tab_mover_izquierda",function(){
+  		var clickada = $("body").find(".clickada");
+  		var copy = clickada.html();
+  		clickada.prev().before("<li>"+copy+"</li>");
+  		clickada.remove();
+
+  	})
   	$("body").on("contextmenu",".tabsita",function(e){
   		e.preventDefault();
+  		var anterior = $(this).parent().prev();
+  		var posterior = $(this).parent().next();
+  		//console.log(anterior.prop("tagName"),posterior.prop("tagName"))
 		var menu = '<ul class="dropdown-menu contextmenu multi-level" aria-labelledby="dLabel" style="position:absolute;display:none">'+
 
 	   		'<li class="tab_a_la_derecha"><a href="#" onclick="return false;">Agregar Tab a la derecha</a></li>'+
 	   		'<li class="tab_a_la_izquierda"><a href="#" onclick="return false;">Agregar Tab a la izquierda</a></li>'+
+	   		'<li class="tab_mover_derecha"><a href="#" onclick="return false;">Mover Tab hacia la derecha</a></li>'+
+	   		'<li class="tab_mover_izquierda"><a href="#" onclick="return false;">Mover Tab hacia la izquierda</a></li>'+
 	  		'</ul>';
 	  	$('body').append(menu);
+	  	if (anterior.prop("tagName") != "LI") {
+	  		$(".tab_mover_izquierda").addClass("hide")
+  		}
+		if (posterior.prop("tagName") != "LI") {
+  			$(".tab_mover_derecha").addClass("hide")
+  		}
 	  	$contextMenu = $(".contextmenu");
 		$contextMenu.on("click", "a", function() {
 		   $contextMenu.hide();
@@ -588,7 +613,9 @@ $(document).ready(function(){
 	})
 	$("body").on("click",".cerrar_tiny",function(e){
 		tinymce.remove(".tinymce");
-		$(this).parent().html($(".tinymce").val());
+		$(this).parent().append($(".tinymce").val());
+		$(".tinymce").remove();
+		$(this).remove();
 		//console.log($(".tinymce").val())
 		return false;
 	})
@@ -627,10 +654,16 @@ $(document).ready(function(){
 				"</div>"+
 			"</div>"+
 			"<div class='row'>"+
-				"<div class='col-md-6'>"+
+				"<div class='col-md-3'>"+
 					"<div class='form-group'>"+
 						"<label>"+
-						"<input type='checkbox' id='solo_lectura_nuevo_control'>Solo lectura</label>"+
+						"<input type='checkbox' id='solo_lectura_nuevo_control'>&nbsp;Solo lectura</label>"+
+					"</div>"+	
+				"</div>"+
+				"<div class='col-md-3'>"+
+					"<div class='form-group'>"+
+						"<label>Valor</label>"+
+						"<input type='text' placeholder='Valor' class='form-control' id='valor_nuevo_control'>"+
 					"</div>"+	
 				"</div>"+
 				"<div class='col-md-6'>"+
@@ -687,6 +720,7 @@ $(document).ready(function(){
 						"<label>Tipo de Control</label>"+
 						"<select name='' id='tipo_nuevo_control' class='form-control'>"+
 							"<option>Seleccione</option>"+
+							"<option value='hidden'>Oculto</option>"+
 							"<option value='text'>Texto</option>"+
 							"<option value='textarea'>Texto largo</option>"+
 							"<option value='select'>Combo</option>"+
@@ -697,7 +731,7 @@ $(document).ready(function(){
 						"</select>"+
 					"</div>"+
 					"<div id='opciones_div' class='hide'>"+
-						"<input type='text' class='form-control' id='opciones' placeholder='Ej: opcion1, opcion2, etc...'>"
+						"<input type='text' class='form-control' id='opciones' placeholder='Ej: opcion1, opcion2, etc...'>"+
 					"</div>"+
 				"</div>"+
 				"<div class='col-md-6'>"+
@@ -717,9 +751,7 @@ $(document).ready(function(){
 				"<div class='col-md-6'>"+
 					"<div class='form-group'>"+
 						"<label>Propiedades (Separar con Enter)</label>"+
-						"<textarea name='' id='propiedades_nuevo_control' class='form-control'>"+
-
-						"</textarea>"+
+						"<textarea name='' id='propiedades_nuevo_control' class='form-control' placeholder='Si escribes aqui no será tomado en cuenta las propiedades anteriores'></textarea>"+
 					"</div>"+	
 				"</div>"+
 			"</div>"+
@@ -730,13 +762,16 @@ $(document).ready(function(){
 			"</div>"+
 		"</p>";
 		$("#body_cambio_input").html(inputs);
+		console.log(inputs)
 		return false;
 	});
 	$("body").on("change","#tipo_nuevo_control",function(){
 		if ($(this).val() == 'select') {
 			$("#opciones_div").removeClass("hide");
+			$("#valor_nuevo_control").parent().addClass("hide");
 		}else{
 			$("#opciones_div").addClass("hide");
+			$("#valor_nuevo_control").parent().removeClass("hide");
 		}
 	});
 	$("body").on("click",".acordeon_antes",function(){
@@ -1872,10 +1907,16 @@ $("body").on("click",".separador_despues",function(){
 	var modal_cambio_input = '<div class="modal fade" id="myModalCambioInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"> <div class="modal-dialog modal-lg" role="document"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> <h4 class="modal-title" contenteditable="true" id="myModalLabel">Modal title</h4> </div> <div class="modal-body" id="body_cambio_input"></div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button> <button type="button" class="btn btn-primary" id="guardar_cambio_input">Guardar</button> </div> </div> </div> </div>';
 	$("#main").append(modal_cambio_input)
 	$('.control-group').draggable();
-
+	$("body").on("click","#eliminar_input",function(){
+		if (confirm("Esta seguro?")) {
+			$("body").find(".posible_eliminar").remove();
+			$('#myModalCambioInput').modal('hide');
+		}
+	})
 	$('body').on("contextmenu",".control-group",function(e){
 		e.preventDefault();
 		select_values = undefined;
+		$(this).addClass("posible_eliminar");
 		controlGroup = $(this);
 		$('#myModalCambioInput').modal('show');
 		var label = $(this).find(".control-label");
@@ -1886,7 +1927,7 @@ $("body").on("click",".separador_despues",function(){
 		tagName = $(this).find(".controls").eq(0).children().eq(0).prop("tagName");
 		if (type=="text" && tagName == "INPUT" || type=="textarea" && tagName == "TEXTAREA") {
 			input = $(this).find(".controls").eq(0).children().eq(0);
-				body += "<div class='col-md-6 panel panel-default'>"+
+				body += "<button class='btn btn-danger' id='eliminar_input' >Eliminar</button><br><br><div class='col-md-6 panel panel-default'>"+
 							"<center><h3>Input Type</h3></center>";
 					if (type == 'text') {
 
@@ -1981,7 +2022,6 @@ $("body").on("click",".separador_despues",function(){
 			
 
 		}
-
 		if (tagName == 'DIV') {
 			input = $(this).find(".controls").eq(0).children().eq(0);
 				body += "<div class='col-md-6 panel panel-default'>"+
@@ -2022,14 +2062,83 @@ $("body").on("click",".separador_despues",function(){
 								"</div>"+
 							"</div>";	
 					}
-				body += "<div class='col-md-6 panel panel-default'>"+
-							"<center><span style='padding:10px;font-size:16px;font-weight: 600;margin-top:10px'>Propiedades</span>&nbsp;&nbsp;<button class='btn btn-primary btn-xs' id='add_propiedades' style='margin-top:4px;'>+</button></center>"+
-							"<div class='panel_propiedades'>"+
+				
 
-							"</div>"+
-						"<br></div>";			
+				console.log(body)
 		}
 
+
+				body +="<div class='row'>"+
+					"<div class='col-md-6'>"+
+						"<div class='form-group'>"+
+							"<label>Color de texto</label>"+
+							"<select class='form-control' id='color_nuevo_control'>"+
+								"<option value=''>Seleccione</option>"+
+								"<option value='black'>Negro</option>"+
+								"<option value='red'>Rojo</option>"+
+								"<option value='white'>Blanco</option>"+
+								"<option value='green'>Verde</option>"+
+								"<option value='orange'>Naranja</option>"+
+								"<option value='purple'>Morado</option>"+
+							"</select>"+
+						"</div>"+	
+					"</div>"+
+					"<div class='col-md-6'>"+
+						"<div class='form-group'>"+
+							"<label>Color de Fondo</label>"+
+							"<select class='form-control' id='color_fondo_nuevo_control'>"+
+								"<option value=''>Seleccione</option>"+
+								"<option value='black'>Negro</option>"+
+								"<option value='red'>Rojo</option>"+
+								"<option value='white'>Blanco</option>"+
+								"<option value='green'>Verde</option>"+
+								"<option value='orange'>Naranja</option>"+
+								"<option value='purple'>Morado</option>"+
+							"</select>"+
+						"</div>"+	
+					"</div>"+
+				"</div>";
+				body +="<div class='row'>"+
+			"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Fuente</label>"+
+						"<select name='' id='fuente_nuevo_control' class='form-control'>"+
+							"<option>Seleccione</option>"+
+							"<option value='times new roman'>Times New Roman</option>"+
+							"<option value='garamond'>Garamond</option>"+
+							"<option value='georgia'>georgia</option>"+
+							"<option value='trebuchet'>Trebuchet</option>"+
+							"<option value='arial'>Arial</option>"+
+							"<option value='verdana'>Verdana</option>"+
+							"<option value='courier'>Courier</option>"+
+							"<option value='courier new'>Courier New</option>"+
+							"<option value='andele mono'>Andele Mono</option>"+
+						"</select>"+
+					"</div>"+	
+				"</div>"+
+				"<div class='col-md-6'>"+
+					"<div class='form-group'>"+
+						"<label>Color de Borde</label>"+
+						"<select class='form-control' id='color_borde_nuevo_control'>"+
+							"<option value=''>Seleccione</option>"+
+							"<option value='black'>Negro</option>"+
+							"<option value='red'>Rojo</option>"+
+							"<option value='white'>Blanco</option>"+
+							"<option value='green'>Verde</option>"+
+							"<option value='orange'>Naranja</option>"+
+							"<option value='purple'>Morado</option>"+
+						"</select>"+
+					"</div>"+	
+				"</div>"+
+				"</div>";
+				body+="<div class='row'>"+
+						"<div class='col-md-6'>"+
+							"<div class='form-group'>"+
+								"<label>Ancho del Borde (PX)</label>"+
+								"<input type='text' class='form-control' id='ancho_borde_nuevo_control'>"+
+							"</div>"+	
+						"</div>"+
+						"</div>";
 		$("#body_cambio_input").html("<div class='row'>"+body+"</div>");
 
 			nueva = "<div class='row'>"+
@@ -2083,24 +2192,30 @@ $("body").on("click",".separador_despues",function(){
 	});
 
 	$("body").on("click","#guardar_cambio_input",function(){
-
+		if ($("#tipo_nuevo_control").val() == "Seleccione") {
+			alert("Es necesario escoger por lo menos un tipo de control");
+			return;
+		}
+		var color_text = $("#color_nuevo_control").val();
+		var fuente = $("#fuente_nuevo_control").val();
+		var ancho_borde = $("#ancho_borde_nuevo_control").val();
+		var color_fondo = $("#color_fondo_nuevo_control").val();
+		var color_borde = $("#color_borde_nuevo_control").val();
 		if ($(this).hasClass("creando_control")) {
 			var label = $("#nombre_nuevo_control").val();
 			var solo_lectura = $("#solo_lectura_nuevo_control").is(":checked");
-			var fuente = $("#fuente_nuevo_control").val();
 			var tipo = $("#tipo_nuevo_control").val();
 			var tamano = $("#tamano_nuevo_control").val();
-			var color_text = $("#color_nuevo_control").val();
-			var color_fondo = $("#color_fondo_nuevo_control").val();
-			var color_borde = $("#color_borde_nuevo_control").val();
-			var ancho_borde = $("#ancho_borde_nuevo_control").val();
+			
 			var propiedades = $("#propiedades_nuevo_control").val();
+			var valor = $("#valor_nuevo_control").val() ? 'value="'+$("#valor_nuevo_control").val()+'"' : '';
 
 			if (solo_lectura) {
 				readonly = "readonly='readonly'";
 			}else{
 				readonly = "";
 			}
+
 			if (tamano) {
 				tamano = 'maxlength="'+tamano+'"';
 			}else{
@@ -2118,24 +2233,29 @@ $("body").on("click",".separador_despues",function(){
 			if (!color_fondo) {
 				color_fondo='';
 			}
+
 			style = "style='color:"+color_text+";border:"+ancho_borde+"px solid "+color_borde+";background-color:"+color_fondo+"'";
 
 			switch(tipo){
 				case "text":
 				label_ = label.split(' ').join('_');
-				input = '<input class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'" type="text">'
+				input = '<input class="form-control" '+style+' '+readonly+' '+valor+' '+tamano+' id="'+label_+'" name="'+label_+'" type="text">'
+				break;
+				case "hidden":
+				label_ = label.split(' ').join('_');
+				input = '<input class="form-control" '+style+' '+readonly+' '+valor+' '+tamano+' id="'+label_+'" name="'+label_+'" type="hidden">'
 				break;
 				case "textarea":
 				label_ = label.split(' ').join('_');
-				input = '<textarea class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'"></textarea>';
+				input = '<textarea class="form-control" '+style+' '+readonly+' '+valor+' '+tamano+' id="'+label_+'" name="'+label_+'"></textarea>';
 				break;
 				case "email":
 				label_ = label.split(' ').join('_');
-				input = '<input class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'" type="email">'
+				input = '<input class="form-control" '+style+' '+readonly+' '+valor+' '+tamano+' id="'+label_+'" name="'+label_+'" type="email">'
 				break;
 				case "number":
 				label_ = label.split(' ').join('_');
-				input = '<input class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'" type="number">'
+				input = '<input class="form-control" '+style+' '+readonly+' '+valor+' '+tamano+' id="'+label_+'" name="'+label_+'" type="number">'
 				break;
 				case "checkbox":
 				label_ = label.split(' ').join('_');
@@ -2154,7 +2274,7 @@ $("body").on("click",".separador_despues",function(){
 					return;
 				}
 				label_ = label.split(' ').join('_');
-				input = '<select class="form-control" '+style+' '+tamano+' id="'+label_+'" name="'+label_+'">'+html_options+'</select>';
+				input = '<select class="form-control" '+style+' '+readonly+' '+valor+' '+tamano+' id="'+label_+'" name="'+label_+'">'+html_options+'</select>';
 				break;
 				case "date":
 				label_ = label.split(' ').join('_');
@@ -2163,27 +2283,86 @@ $("body").on("click",".separador_despues",function(){
 		          
 				break;
 			}
+
+			if ($("#propiedades_nuevo_control").val()) {
+				style=$("#propiedades_nuevo_control").val().replace("\n"," ");
+				console.log(style)
+				switch(tipo){
+					case "text":
+					label_ = label.split(' ').join('_');
+					input = '<input '+style+' type="text">'
+					break;
+					case "hidden":
+					label_ = label.split(' ').join('_');
+					input = '<input '+style+' type="hidden">'
+					break;
+					case "textarea":
+					label_ = label.split(' ').join('_');
+					input = '<textarea '+style+'"></textarea>';
+					break;
+					case "email":
+					label_ = label.split(' ').join('_');
+					input = '<input '+style+' type="email">'
+					break;
+					case "number":
+					label_ = label.split(' ').join('_');
+					input = '<input '+style+' type="number">'
+					break;
+					case "checkbox":
+					label_ = label.split(' ').join('_');
+					input = '<label><input type="checkbox" '+style+' ">&nbsp;'+label+'</label>';
+					break;
+					case "select":
+					if ($("#opciones").val()) {
+						var opciones = $("#opciones").val().split(',');
+						var html_options = '<option>Seleccione</option>';
+						for (var i = 0; i < opciones.length; i++) {
+							html_options+="<option value='"+$.trim(opciones[i])+"'>"+$.trim(opciones[i])+"</option>";
+						}
+					}else{
+						alert("Es necesario escribir las opciones del combo!");
+						$('#opciones').focus();
+						return;
+					}
+					label_ = label.split(' ').join('_');
+					input = '<select '+style+'>'+html_options+'</select>';
+					break;
+					case "date":
+					label_ = label.split(' ').join('_');
+					nuevo_input = "<input type='text' class='form-control col-md-12' readonly='readonly' name='"+label_+"' id='"+label_+"'>";
+					html_date = "<label class='control-label'>"+label_+"</label><div class='controls'><div class='input-group date' id='datetimepicker1'>"+nuevo_input+"<span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span></div></div>";
+			          
+					break;
+				}				
+			}
+
 			if (tipo == 'date') {
 				var control = '<div class="control-group" style="position: relative;">'+
 		            html_date+
 		        '</div>';
 			}else{
-				if (tipo == 'checkbox') {
-					var control = '<div class="control-group" style="position: relative;">'+
-			            input+
-			        '</div>';
-
+				if (tipo == "hidden") {
+					var control = input;
 				}else{
-					var control = '<div class="control-group" style="position: relative;">'+
-			            '<label class="control-label">'+label+'</label>'+
-			            '<div class="controls">'+
-			                input+
-			                
-			            '</div>'+
-			        '</div>';	
+
+					if (tipo == 'checkbox') {
+						var control = '<div class="control-group" style="position: relative;">'+
+				            input+
+				        '</div>';
+
+					}else{
+						var control = '<div class="control-group" style="position: relative;">'+
+				            '<label class="control-label">'+label+'</label>'+
+				            '<div class="controls">'+
+				                input+
+				                
+				            '</div>'+
+				        '</div>';	
+					}
 				}
 				
 			}
+
 
 	        $(".panel-body .row .col-md-12").eq(0).prepend(control);
 	        if (tipo == 'date') {
