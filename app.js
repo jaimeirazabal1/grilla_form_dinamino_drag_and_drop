@@ -1934,22 +1934,29 @@ $("body").on("click",".separador_despues",function(){
 						body +=	"<div class='textarea_cambio_div'>"+
 								"<label><input type='radio' name='text_cambio' checked value='text' class='text_cambio'> Text</label>"+
 							"</div>";
+
 					}else{
 						body +=	"<div class='textarea_cambio_div'>"+
 								"<label><input type='radio' name='text_cambio' value='text' class='text_cambio'> Text</label>"+
 							"</div>";
+
 					}
 					
 					if (tagName == 'TEXTAREA') {
 						body += "<div class='textarea_cambio_div'>"+
 									"<label><input type='radio' name='text_cambio' checked value='textarea' class='text_cambio'> Textarea</label>"+
 								"</div>";
+
 					}else{
 
 						body += "<div class='textarea_cambio_div'>"+
 									"<label><input type='radio' name='text_cambio' value='textarea' class='text_cambio'> Textarea</label>"+
 								"</div>";
+
 					}
+					body += "<div class='textarea_cambio_div'>"+
+						"<label><input type='radio' name='text_cambio' value='hidden' class='text_cambio'> Oculto</label>"+
+				"</div>";
 					body += "<div class='textarea_cambio_div'>"+
 								"<label><input type='radio' name='text_cambio' value='select' class='text_cambio'> Select</label>"+
 							"</div>";
@@ -1986,6 +1993,9 @@ $("body").on("click",".separador_despues",function(){
 							"</div>";
 					body += "<div class='textarea_cambio_div'>"+
 								"<label><input type='radio' name='text_cambio' value='date' class='text_cambio'> Date</label>"+
+							"</div>";
+					body += "<div class='textarea_cambio_div'>"+
+								"<label><input type='radio' name='text_cambio'  value='hidden' class='text_cambio'> Oculto</label>"+
 							"</div>"+
 						"</div>";
 
@@ -2023,6 +2033,7 @@ $("body").on("click",".separador_despues",function(){
 
 		}
 		if (tagName == 'DIV') {
+
 			input = $(this).find(".controls").eq(0).children().eq(0);
 				body += "<div class='col-md-6 panel panel-default'>"+
 							"<center><h3>Input Type</h3></center>";
@@ -2031,21 +2042,33 @@ $("body").on("click",".separador_despues",function(){
 						body +=	"<div class='textarea_cambio_div'>"+
 								"<label><input type='radio' name='text_cambio' checked value='text' class='text_cambio'> Text</label>"+
 							"</div>";
+							body += "<div class='textarea_cambio_div'>"+
+						"<label><input type='radio' name='text_cambio' value='hidden' class='text_cambio'> Oculto</label>"+
+				"</div>";
 					}else{
 						body +=	"<div class='textarea_cambio_div'>"+
 								"<label><input type='radio' name='text_cambio' value='text' class='text_cambio'> Text</label>"+
 							"</div>";
+							body += "<div class='textarea_cambio_div'>"+
+						"<label><input type='radio' name='text_cambio' value='hidden' class='text_cambio'> Oculto</label>"+
+				"</div>";
 					}
 					
 					if (tagName == 'TEXTAREA') {
 						body += "<div class='textarea_cambio_div'>"+
 									"<label><input type='radio' name='text_cambio' checked value='textarea' class='text_cambio'> Textarea</label>"+
 								"</div>";
+								body += "<div class='textarea_cambio_div'>"+
+						"<label><input type='radio' name='text_cambio' value='hidden' class='text_cambio'> Oculto</label>"+
+				"</div>";
 					}else{
 
 						body += "<div class='textarea_cambio_div'>"+
 									"<label><input type='radio' name='text_cambio' value='textarea' class='text_cambio'> Textarea</label>"+
 								"</div>";
+								body += "<div class='textarea_cambio_div'>"+
+						"<label><input type='radio' name='text_cambio' value='hidden' class='text_cambio'> Oculto</label>"+
+				"</div>";
 					}
 					body += "<div class='textarea_cambio_div'>"+
 								"<label><input type='radio' name='text_cambio' value='select' class='text_cambio'> Select</label>"+
@@ -2055,21 +2078,22 @@ $("body").on("click",".separador_despues",function(){
 									"<label><input type='radio' name='text_cambio' checked value='date' class='text_cambio'> Date</label>"+
 								"</div>"+
 							"</div>";
+						
 
 					}else{
 						body += "<div class='textarea_cambio_div'>"+
 									"<label><input type='radio' name='text_cambio' value='date' class='text_cambio'> Date</label>"+
 								"</div>"+
 							"</div>";	
+							
 					}
-				
+			
 
-				console.log(body)
 		}
 
 
 				body +="<div class='row'>"+
-					"<div class='col-md-6'>"+
+					"<div class='col-md-12'>"+
 						"<div class='form-group'>"+
 							"<label>Color de texto</label>"+
 							"<select class='form-control' id='color_nuevo_control'>"+
@@ -2138,6 +2162,13 @@ $("body").on("click",".separador_despues",function(){
 								"<input type='text' class='form-control' id='ancho_borde_nuevo_control'>"+
 							"</div>"+	
 						"</div>"+
+						"<div class='col-md-6'>"+
+							"<div class='form-group'>"+
+								"<label>"+
+								"<input type='checkbox' id='solo_lectura_nuevo_control'>&nbsp;Solo lectura</label>"+
+							"</div>"+	
+						"</div>"	
+						"</div>"+
 						"</div>";
 		$("#body_cambio_input").html("<div class='row'>"+body+"</div>");
 
@@ -2201,9 +2232,9 @@ $("body").on("click",".separador_despues",function(){
 		var ancho_borde = $("#ancho_borde_nuevo_control").val();
 		var color_fondo = $("#color_fondo_nuevo_control").val();
 		var color_borde = $("#color_borde_nuevo_control").val();
+		var solo_lectura = $("#solo_lectura_nuevo_control").is(":checked");
 		if ($(this).hasClass("creando_control")) {
 			var label = $("#nombre_nuevo_control").val();
-			var solo_lectura = $("#solo_lectura_nuevo_control").is(":checked");
 			var tipo = $("#tipo_nuevo_control").val();
 			var tamano = $("#tamano_nuevo_control").val();
 			
@@ -2405,17 +2436,35 @@ $("body").on("click",".separador_despues",function(){
 			}
 
 		})
+		if (!color_text) {
+				color_text='';
+			}
+			if (!ancho_borde) {
+				ancho_borde='';
+			}
+			if (!color_borde) {
+				color_borde='';
+			}
+			if (!color_fondo) {
+				color_fondo='';
+			}
+			if (solo_lectura) {
+				readonly = "readonly='readonly'";
+			}else{
+				readonly = "";
+			}
+			style = "style='color:"+color_text+";border:"+ancho_borde+"px solid "+color_borde+";background-color:"+color_fondo+"' "+readonly;
 		if (typeof value == 'undefined') {
 			value = '';
 		}
 		if (tipo == 'textarea') {
-			nuevo_input = "<textarea "+propiedades+" >"+value+"</textarea>";
+			nuevo_input = "<textarea "+propiedades+" "+style+" >"+value+"</textarea>";
 		}
 		if (tipo == 'text' || tipo == 'date') {
-			nuevo_input = "<input "+propiedades+" >";
+			nuevo_input = "<input "+propiedades+" "+style+" >";
 		}
 		if (tipo == 'select') {
-			nuevo_input = "<select "+propiedades+" >";	
+			nuevo_input = "<select "+propiedades+" "+style+" >";	
 			$(".option_valor").each(function(i){
 				nuevo_input += "<option value='"+$(this).val()+"'>"+$('.option_texto').eq(i).val()+"</option>";	
 			})
