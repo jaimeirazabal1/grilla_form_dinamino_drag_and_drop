@@ -1,4 +1,54 @@
+var json_elementos = [
+    {
+        "nombre":"Hipervínculo",
+        "html":"<a></a>",
+        "propiedades": [
+            {
+                "propiedad":"href",
+                "type":"text",
+                "etiqueta":"Escriba el enlace"               
+            },
+            {
+                "propiedad":"target",
+                "type":"select",
+                "etiqueta":"Seleccione el destino",
+                "valores":["_blank","_self","_parent"]
+            },
+            {
+                "propiedad":"text",
+                "type":"text",
+                "etiqueta":"Ingrese el texto del enlace"
+            },
+            {
+                "propiedad":"id",
+                "type":"text",
+                "etiqueta":"Escriba el nombre del elemento"           
+            }
+        ]
+    },
+    {
+        "nombre":"Imagen",
+        "html":"<img />",
+        "propiedades": [
+            {
+                "propiedad":"src",
+                "type":"text",
+                "etiqueta":"Escriba la url de la imagen"               
+            },
+            {
+                "propiedad":"height",
+                "type":"text",
+                "etiqueta":"Ingrese el alto"                
+            },
+            {
+                "propiedad":"width",
+                "type":"text",
+                "etiqueta":"ingrese el ancho"           
+            }
+        ]
+    }
 
+];
 
 $(function(){
     $(".dropdown-menu > li > a.trigger").on("click",function(e){
@@ -1088,11 +1138,13 @@ $("body").on("click",".separador_despues",function(){
 		    tools_array +='</ul>';
 		  tools_array +='</li>';
 		  tools_array += '<li role="presentation" class="dropdown">'+'<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Agregar Elemento<span class="caret"></span></a>'+
-			  '<ul class="dropdown-menu">'+
-			  	'<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="hipervinculo">Agregar Hipervinculo</a></li>'+
-			  	'<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="imagen">Agregar Imagen</a></li>'+
-			  	'<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="separador">Agregar Separador</a></li>'+
-			  '</ul>'+
+			  '<ul class="dropdown-menu">';
+			  for (var i = 0; i < json_elementos.length; i++) {
+			  	tools_array +='<li><a href="#" class="elemento_html" title="Arrastra el elemento hacia una columna" onClick="return false;" id="'+json_elementos[i]['nombre']+'">Agregar '+json_elementos[i]['nombre']+'</a></li>';
+			  }
+			  	
+
+			   tools_array +='</ul>'+
 		  '</li>';
 
 		tools_array +='</ul>';
@@ -1244,7 +1296,20 @@ $("body").on("click",".separador_despues",function(){
 			       	}
 
 		       	}else if($(ui.draggable).hasClass('elemento_html')){
-		       		if ($(ui.draggable).attr("id") == "hipervinculo") {
+		       		var id = $(ui.draggable).attr("id");
+		       		for (var i = 0; i < json_elementos.length; i++) {
+		       			if (json_elementos[i]['nombre'] == id) {
+
+			       			for (var j = 0; j < json_elementos[i]['propiedades'].length; j++) {
+			       				html+="<div class='form-group'><label>"+json_elementos[i]['propiedades'][j]['propiedad']+"</label><input type='text' id='value_"+json_elementos[i]['nombre']+"' class='form-control'></div>";
+			       			}
+		       			}
+		       			
+		       		}
+		       			alert("?")
+		       		$("#body_cambio_input").html(html);
+		       		$('#myModalCambioInput').modal('show');
+		       		/*if ($(ui.draggable).attr("id") == "hipervinculo") {
 		       			var texto = prompt("Ingresa el texto del hipervinculo");
 		       			var direccion = prompt("Ingresa la dirección de enlace (link)");
 		       			if (texto && direccion) {
@@ -1262,7 +1327,7 @@ $("body").on("click",".separador_despues",function(){
 		       		if ($(ui.draggable).attr("id") == "separador") {
 		       			// alert("?")
 		       			$(droppable).append("<div class='no_se_ve'><hr> <a onclick='$(this).parent().remove();'>x</a></div>");
-		       		}
+		       		}*/
 		       	}else{
 		       		
 		       	 draggable.appendTo(droppable);
