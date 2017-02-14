@@ -787,8 +787,8 @@ $(document).ready(function(){
 	      '</h4>'+
 	    '</div>'+
 	    '<div id="collapseOne'+acordeones+'1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne'+acordeones+'">'+
-	      '<div class="panel-body" contenteditable="true">'+
-	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '<div class="panel-body" >'+
+	      	'<div class="row"><div contenteditable="true" class="gris col-md-12"></div></div>'+
 	      '</div>'+
 	    '</div>'+
 	  '</div>'+
@@ -801,8 +801,8 @@ $(document).ready(function(){
 	      '</h4>'+
 	    '</div>'+
 	    '<div id="collapseTwo'+acordeones+'2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo'+acordeones+'1">'+
-	      '<div class="panel-body" contenteditable="true">'+
-	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '<div class="panel-body" >'+
+	      	'<div class="row"><div contenteditable="true" class="gris col-md-12"></div></div>'+
 	      '</div>'+
 	    '</div>'+
 	  '</div>'+
@@ -815,8 +815,8 @@ $(document).ready(function(){
 	      '</h4>'+
 	    '</div>'+
 	    '<div id="collapseThree'+acordeones+'3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree'+acordeones+'2">'+
-	      '<div class="panel-body" contenteditable="true">'+
-	        'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven'+
+	      '<div class="panel-body" >'+
+	      	'<div class="row"><div contenteditable="true" class="gris col-md-12"></div></div>'+
 	      '</div>'+
 	    '</div>'+
 	  '</div>'+'<a href="" onClick="$(this).parent().remove();return false;"> X </a>'+
