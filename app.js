@@ -1297,17 +1297,37 @@ $("body").on("click",".separador_despues",function(){
 
 		       	}else if($(ui.draggable).hasClass('elemento_html')){
 		       		var id = $(ui.draggable).attr("id");
+		       		var el = '';
+		       		$("#guardar_cambio_input").addClass("agregando_elemento");
+		       		html = '';
 		       		for (var i = 0; i < json_elementos.length; i++) {
 		       			if (json_elementos[i]['nombre'] == id) {
-
+		       				el = json_elementos[i]['html'];
+		       				
 			       			for (var j = 0; j < json_elementos[i]['propiedades'].length; j++) {
-			       				html+="<div class='form-group'><label>"+json_elementos[i]['propiedades'][j]['propiedad']+"</label><input type='text' id='value_"+json_elementos[i]['nombre']+"' class='form-control'></div>";
+			       				html+="<div class='form-group'>"+
+			       						"<label>"+json_elementos[i]['propiedades'][j]['propiedad']+"</label>";
+			       				if (json_elementos[i]['propiedades'][j]['type'] == 'select') {
+
+				       				html+="<select class='form-control atributo_nuevo ' id='value_"+json_elementos[i]['nombre']+"'>";
+				       					html+="<option>Seleccione</option>";
+				       					for (var k = 0; k < json_elementos[i]['propiedades'][j]['valores'].length; k++) {
+				       						html+="<option value='"+json_elementos[i]['propiedades'][j]['valores'][k]+"'>"+json_elementos[i]['propiedades'][j]['valores'][k]+"</option>";
+				       					}
+				       				html+="</select></div>";
+			       				}else{
+			       					html+="<input type='text' id='value_"+json_elementos[i]['nombre']+"' class=' atributo_nuevo form-control'>"+
+				       					"</div>";
+			       				}
 			       			}
 		       			}
 		       			
 		       		}
-		       			alert("?")
+		       		$("#myModalLabel").html("Propiedades de "+id);
 		       		$("#body_cambio_input").html(html);
+		       		el=$(el).addClass("el");
+		       		//$("#body_cambio_input").append(el);
+		       		$(droppable).append(el)
 		       		$('#myModalCambioInput').modal('show');
 		       		/*if ($(ui.draggable).attr("id") == "hipervinculo") {
 		       			var texto = prompt("Ingresa el texto del hipervinculo");
@@ -2288,6 +2308,24 @@ $("body").on("click",".separador_despues",function(){
 	});
 
 	$("body").on("click","#guardar_cambio_input",function(){
+
+		if ($("#guardar_cambio_input").hasClass("agregando_elemento")) {
+			$(".atributo_nuevo").each(function(){
+				atributo = $(this).parent().find("label").text();
+				if (atributo == 'text') {
+					$(".el").text($(this).val())
+
+				}else{
+
+					$(".el").attr(atributo,$(this).val());
+				}
+				$(this).parent().remove();
+			});
+			$("#guardar_cambio_input").removeClass("agregando_elemento");
+			$('#myModalCambioInput').modal('hide');
+			return;
+		}
+
 		if ($("#tipo_nuevo_control").val() == "Seleccione") {
 			alert("Es necesario escoger por lo menos un tipo de control");
 			return;
