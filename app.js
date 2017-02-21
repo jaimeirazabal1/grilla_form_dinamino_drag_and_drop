@@ -872,6 +872,51 @@ $(document).ready(function(){
 	  '</div>'+'<a href="" onClick="$(this).parent().remove();return false;"> X </a>'+
 	'</div>';
 		clickada.parent().before(acordeon);
+		$( ".gris" ).droppable({
+		   hoverClass: "hover",
+		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
+		    	$(this).parent().find('.close').remove();
+		    	
+		       	var droppable = $(this);
+		       	var draggable = ui.draggable;
+		       	draggable.prop('style','');
+		       	// Move draggable into droppable
+		       	if ($(ui.draggable).hasClass('plugin_tool')) {
+			       	for (var i = 0; i < herramientas_array.length; i++) {
+			       		if (herramientas_array[i].nombre == $(ui.draggable).attr('nombre')) {
+
+		       				$(droppable).append(herramientas_array[i].html);
+			       		}
+			       	}
+
+		       	}else if($(ui.draggable).hasClass('elemento_html')){
+		       		if ($(ui.draggable).attr("id") == "hipervinculo") {
+		       			var texto = prompt("Ingresa el texto del hipervinculo");
+		       			var direccion = prompt("Ingresa la dirección de enlace (link)");
+		       			if (texto && direccion) {
+		       				$(droppable).append("<a class='imagen_creada' target='_blank' href='"+direccion+"'>"+texto+"</a>");
+		       			}
+		       		}
+		       		if ($(ui.draggable).attr("id") == "imagen") {
+		       			var direccion = prompt("Ingresa la dirección de enlace de la imagen");
+		       			var ancho = prompt("Ingresa el ancho de la imagen en Pixeles");
+		       			var alto = prompt("Ingresa el alto de la imagen en Pixeles");
+		       			if (ancho && alto) {
+		       				$(droppable).append("<img class='imagen_creada' src='"+direccion+"' width='"+ancho+"' height='"+alto+"'>");
+		       			}
+		       		}
+		       		if ($(ui.draggable).attr("id") == "separador") {
+		       			// alert("?")
+		       			$(droppable).append("<div class='no_se_ve'><hr> <a onclick='$(this).parent().remove();'>x</a></div>");
+		       		}
+		       	}else{
+		       		
+		       	 draggable.appendTo(droppable);
+		       	}
+		    }
+		});
 		return false;
 	});
 	$("body").on("click",".acordeon_despues",function(){
@@ -922,6 +967,51 @@ $(document).ready(function(){
 	  '</div>'+'<a href="" onClick="$(this).parent().remove();return false;"> X </a>'+
 	'</div>';
 		clickada.parent().after(acordeon);
+		$( ".gris" ).droppable({
+		   hoverClass: "hover",
+		    drop: function( event, ui ) {
+		    	id = $(this).parent().parent().attr('id').split('_')[2];
+		    	$(".tab_editable_"+id).parent().find('.close').remove();
+		    	$(this).parent().find('.close').remove();
+		    	
+		       	var droppable = $(this);
+		       	var draggable = ui.draggable;
+		       	draggable.prop('style','');
+		       	// Move draggable into droppable
+		       	if ($(ui.draggable).hasClass('plugin_tool')) {
+			       	for (var i = 0; i < herramientas_array.length; i++) {
+			       		if (herramientas_array[i].nombre == $(ui.draggable).attr('nombre')) {
+
+		       				$(droppable).append(herramientas_array[i].html);
+			       		}
+			       	}
+
+		       	}else if($(ui.draggable).hasClass('elemento_html')){
+		       		if ($(ui.draggable).attr("id") == "hipervinculo") {
+		       			var texto = prompt("Ingresa el texto del hipervinculo");
+		       			var direccion = prompt("Ingresa la dirección de enlace (link)");
+		       			if (texto && direccion) {
+		       				$(droppable).append("<a class='imagen_creada' target='_blank' href='"+direccion+"'>"+texto+"</a>");
+		       			}
+		       		}
+		       		if ($(ui.draggable).attr("id") == "imagen") {
+		       			var direccion = prompt("Ingresa la dirección de enlace de la imagen");
+		       			var ancho = prompt("Ingresa el ancho de la imagen en Pixeles");
+		       			var alto = prompt("Ingresa el alto de la imagen en Pixeles");
+		       			if (ancho && alto) {
+		       				$(droppable).append("<img class='imagen_creada' src='"+direccion+"' width='"+ancho+"' height='"+alto+"'>");
+		       			}
+		       		}
+		       		if ($(ui.draggable).attr("id") == "separador") {
+		       			// alert("?")
+		       			$(droppable).append("<div class='no_se_ve'><hr> <a onclick='$(this).parent().remove();'>x</a></div>");
+		       		}
+		       	}else{
+		       		
+		       	 draggable.appendTo(droppable);
+		       	}
+		    }
+		});
 		return false;
 	});
 	$("body").on("click",".separador_antes",function(){
